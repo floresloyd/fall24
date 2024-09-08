@@ -1,0 +1,5 @@
+*** There are 4 people ***
+Emily is 24 years old. 
+Ben is 29 years old. 
+Mark is 22 years old. 
+Lisa is 17 years old. 
