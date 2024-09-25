@@ -1,0 +1,46 @@
+** Below is the mirror framed input image. ***
+*** Enter PrettyPrint() ***
+9 9 18453416 13762769
+1 1 1 2 3 4 5 1 1 
+1 1 1 2 3 4 5 1 1 
+2 2 1 5 53 5 5 1 1 
+3 3 1 52 53 54 1 4 4 
+3 3 55 51 2 53 54 5 5 
+1 1 2 53 54 51 2 5 5 
+4 4 1 3 54 5 1 2 2 
+4 4 51 2 3 4 45 1 1 
+4 4 51 2 3 4 45 1 1 
+*** Leaving PrettyPrint() ***
+
+** Below is the mask for Gaussian filter. ***
+*** Enter PrettyPrint() ***
+3 3 18453416 13762769
+1 4 1 
+2 1 2 
+4 2 1 
+*** Leaving PrettyPrint() ***
+
+** Below is the 3x3 Gaussian filter of the input image. ***
+*** Enter PrettyPrint() ***
+7 7 18453416 13762769
+0 0 0 0 0 0 0 
+0 13762769 13762769 13762769 13762769 13762769 13762769 
+0 13762769 13762769 13762769 13762769 13762769 13762769 
+0 13762769 13762769 13762769 13762769 13762769 13762769 
+0 13762769 13762769 13762769 13762769 13762769 13762769 
+0 13762769 13762769 13762769 13762769 13762769 13762769 
+0 13762769 13762769 13762769 13762769 13762769 13762769 
+*** Leaving PrettyPrint() ***
+
+** Below is the result of the binary threshold of Gaussian filtered image. ***
+*** Enter PrettyPrint() ***
+7 7 18453416 13762769
+0 0 0 0 0 0 0 
+0 1 1 1 1 1 1 
+0 1 1 1 1 1 1 
+0 1 1 1 1 1 1 
+0 1 1 1 1 1 1 
+0 1 1 1 1 1 1 
+0 1 1 1 1 1 1 
+*** Leaving PrettyPrint() ***
+
