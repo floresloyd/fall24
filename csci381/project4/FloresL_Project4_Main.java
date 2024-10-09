@@ -61,6 +61,103 @@ public class FloresL_Project4_Main {
             this.structAry = new int[numStructRows][numStructCols];
         }//end-Constructor-Morphology
 
+
+        /**
+         * @zero2DAry Set entire 2D Array to zero
+         * @param ary 2D array to be zeroed out
+         */
+        public void zero2DAry(int[][] ary, int nRows, int nCols){
+            for (int i = 0; i < nRows; i++){
+                for (int j = 0; j < nCols; j++){
+                    ary[i][j] = 0;
+                }
+            }
+        }//end-zero2DAry
+
+        
+        /**
+         * @loadImg Load imgFile to zeroFramedAry inside of frame, begins at (rowOrigin, colOrigin) which serves as padding
+         * @inFile Path to input image file
+         * @zeroFramedAry 2D Array that will hold the image
+         */
+        public void loadImg(String inFile, int[][] zeroFramedAry){
+            try {
+                // Instantiate a Buffered Reader for the file
+                BufferedReader br = new BufferedReader(new FileReader(inFile));
+                br.readLine();     // Skip the header 
+                    
+                // Load the image into zeroFramedAry starting at (rowOrigin, colOrigin)
+                for (int i = 0; i < numImgRows; i++) {
+
+                    String[] imageRow = br.readLine().trim().split("\\s+"); // Take each row 
+                    
+                    for (int j = 0; j < numImgCols; j++) {
+                        // Place image data into zeroFramedAry, starting from rowOrigin and colOrigin
+                        zeroFramedAry[rowOrigin + i][colOrigin + j] = Integer.parseInt(imageRow[j]); 
+                    }
+                }
+                // Close the BufferedReader after use
+                br.close();
+            }catch (IOException e) {
+                System.err.println("Error: " + e.getMessage());
+            }
+        }//end-loadImg
+
+
+        /**
+         * @loadStruct load structFile into sturctAry
+         * @structFile File containing the structuring Object
+         * @structAry Array that will hold structuring Object
+         */
+
+        public void loadStruct(String structFile, int[][] structAry){
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(structFile));
+                br.readLine();  // Skip header
+                br.readLine();  // Skip 2nd header
+
+                for (int i = 0; i < numImgRows; i++){
+                    String structRow[] = br.readLine().trim().split("\\s+");
+                    for (int j = 0; j < numStructRows; j++){
+                        structAry[i][j] = Integer.parseInt(structRow[j]);
+                    }
+                }
+                br.close();
+            } catch(IOException e){
+                System.err.println("Error: " + e.getMessage());
+            }
+        }//end-loadStruct
+
+        public void printInstanceVariables() {
+            System.out.println("Image File Variables:");
+            System.out.println("numImgRows: " + numImgRows);
+            System.out.println("numImgCols: " + numImgCols);
+            System.out.println("imgMin: " + imgMin);
+            System.out.println("imgMax: " + imgMax);
+            System.out.println("Structuring Element Variables:");
+            System.out.println("numStructRows: " + numStructRows);
+            System.out.println("numStructCols: " + numStructCols);
+            System.out.println("structMin: " + structMin);
+            System.out.println("structMax: " + structMax);
+            System.out.println("rowOrigin: " + rowOrigin);
+            System.out.println("colOrigin: " + colOrigin);
+            System.out.println("Array Sizes:");
+            System.out.println("zeroFramedAry size: " + zeroFramedAry.length + "x" + zeroFramedAry[0].length);
+            System.out.println("structAry size: " + structAry.length + "x" + structAry[0].length);
+        }
+
+
+        public void print2Dary(int[][] ary, int r, int c) {
+            for (int i = 0; i < r; i++) {
+                for (int j = 0; j < c; j++) {
+                    // Print each element in the row, formatted nicely with spaces
+                    System.out.print(String.format("%1d", ary[i][j]) + " ");
+                }
+                // Move to the next line after each row
+                System.out.println();
+            }
+        }
+    
         
 
 
@@ -75,6 +172,7 @@ public class FloresL_Project4_Main {
 
         String inFile = args[0];
         String structFile = args[1];
+        System.out.println("Step 0: Complete! inFile and StructFile Loaded...");
 
         // ### STEP 1: Read inFile & structFile ###
         int numImgRows = 0;
@@ -118,11 +216,28 @@ public class FloresL_Project4_Main {
         } catch (IOException e){
             System.err.println("Error: " + e.getMessage());
         }
+        System.out.println("Step 1: Complete! inFile and StructFile headers read...");
 
+        // Instantiate Morphology object
         Morphology morphology = new FloresL_Project4_Main().new Morphology(numImgRows, numImgCols, imgMin, imgMax, numStructRows, numStructCols, structMin, structMax, rowOrigin, colOrigin);
-        morphology.printInstanceVariables();
+        System.out.println("Morphology Object: Instantiated");
 
-        // ### Dynamically Allocate Arrays ###
+        // ### STEP 3: Zero out 2D Arrays ###
+        morphology.zero2DAry(morphology.zeroFramedAry, morphology.rowSize, morphology.colSize);
+        morphology.zero2DAry(morphology.morphAry, morphology.rowSize, morphology.colSize);
+        morphology.zero2DAry(morphology.tempAry, morphology.rowSize, morphology.colSize);
+        morphology.zero2DAry(morphology.structAry, morphology.numStructRows, morphology.numStructCols);        
+        System.out.println("Step 2: Complete! 2D Arrays Zeroed Out...");
+
+        // ### STEP 4 and 5: loadImage and loadStruct 
+        morphology.loadImg(inFile, morphology.zeroFramedAry);
+        System.out.println("Step 4: Complete! Image Loaded...");
+        morphology.print2Dary(morphology.zeroFramedAry, morphology.rowSize, morphology.colSize);
+
+
+        // morphology.loadStruct(structFile, morphology.structAry);
+        // morphology.print2Dary(morphology.structAry, morphology.numStructRows, morphology.numStructCols);
+        // System.out.println("Step 5: Complete! Structure Element Loaded...");
         
 
 
