@@ -116,9 +116,9 @@ public class FloresL_Project4_Main {
                 br.readLine();  // Skip header
                 br.readLine();  // Skip 2nd header
 
-                for (int i = 0; i < numImgRows; i++){
+                for (int i = 0; i < numStructRows; i++){
                     String structRow[] = br.readLine().trim().split("\\s+");
-                    for (int j = 0; j < numStructRows; j++){
+                    for (int j = 0; j < numStructCols; j++){
                         structAry[i][j] = Integer.parseInt(structRow[j]);
                     }
                 }
@@ -227,18 +227,39 @@ public class FloresL_Project4_Main {
         morphology.zero2DAry(morphology.morphAry, morphology.rowSize, morphology.colSize);
         morphology.zero2DAry(morphology.tempAry, morphology.rowSize, morphology.colSize);
         morphology.zero2DAry(morphology.structAry, morphology.numStructRows, morphology.numStructCols);        
-        System.out.println("Step 2: Complete! 2D Arrays Zeroed Out...");
+        System.out.println("Step 2 & 3: Complete! 2D Arrays Zeroed Out...");
 
         // ### STEP 4 and 5: loadImage and loadStruct 
         morphology.loadImg(inFile, morphology.zeroFramedAry);
         System.out.println("Step 4: Complete! Image Loaded...");
-        morphology.print2Dary(morphology.zeroFramedAry, morphology.rowSize, morphology.colSize);
+        morphology.loadStruct(structFile, morphology.structAry);
+        System.out.println("Step 5: Complete! Structure Element Loaded...");
 
+        // ### STEP 6: Obtain User's choice of Process
+        int userChoice = Integer.parseInt(args[2]);
+        System.out.println("Step 6: Complete! User's Choice of Process: " + userChoice);
 
-        // morphology.loadStruct(structFile, morphology.structAry);
-        // morphology.print2Dary(morphology.structAry, morphology.numStructRows, morphology.numStructCols);
-        // System.out.println("Step 5: Complete! Structure Element Loaded...");
+        // ### STEP 7: Running User's Choice of Process
+        if (userChoice == 1){
+            System.out.println("Running Process 1");
+        }
+        else if (userChoice == 2) {
+            System.out.println("Running Process 2");
+        }
+        else if (userChoice == 3) {
+            System.out.println("Running Process 3");
+        }
+        else if (userChoice == 4) {
+            System.out.println("Running Process 4");
+        }
+        else if (userChoice == 5) {
+            System.out.println("Running Process 5");
+        }
+        else{
+            throw new IllegalArgumentException("Invalid Process! The only available options are: 1, 2, 3, 4, 5"); 
+        }
         
+        System.err.println("END EXEC");
 
 
     }//end-main
