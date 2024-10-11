@@ -26,7 +26,7 @@ public class FloresL_Project4_Main {
         private int rowSize;        // Used to dynamically allocate the padded arrays
         private int colSize;
 
-        private int[][] zeroFramedAry; // Holds the padded image
+        private int[][] zeroFramedAry; // Holds the padded image to perform morphological operations. We zero frame so we preserve object edges
         private int[][] morphAry;      // Store the results of Morphology
         private int[][] tempAry;       // Buffer
         private int[][] structAry;     // Holds structuring element 
@@ -77,8 +77,8 @@ public class FloresL_Project4_Main {
         
         /**
          * @loadImg Load imgFile to zeroFramedAry inside of frame, begins at (rowOrigin, colOrigin) which serves as padding
-         * @inFile Path to input image file
-         * @zeroFramedAry 2D Array that will hold the image
+         * @param inFile Path to input image file
+         * @param zeroFramedAry 2D Array that will hold the image
          */
         public void loadImg(String inFile, int[][] zeroFramedAry){
             try {
@@ -106,8 +106,8 @@ public class FloresL_Project4_Main {
 
         /**
          * @loadStruct load structFile into sturctAry
-         * @structFile File containing the structuring Object
-         * @structAry Array that will hold structuring Object
+         * @param structFile File containing the structuring Object
+         * @param structAry Array that will hold structuring Object
          */
 
         public void loadStruct(String structFile, int[][] structAry){
@@ -127,6 +127,206 @@ public class FloresL_Project4_Main {
                 System.err.println("Error: " + e.getMessage());
             }
         }//end-loadStruct
+
+
+        /**
+         * @computeDilation Performs Dilation input ary and stores it in output ary. Does it one pixel at a time.
+         * @param zeroFramedAry contains the image with zero frame. We zero frame to not mess up image border
+         * @param morphAry will hold the output of morphology
+         */
+        public void computeDilation(int[][] zeroFramedAry, int[][] morphAry){
+            for (int i = rowOrigin; i < rowOrigin + numImgRows; i++) {
+                for (int j = colOrigin; j < colOrigin + numImgCols; j++) {
+                    if (zeroFramedAry[i][j] > 0){
+                        onePixelDilation(i, j, zeroFramedAry, morphAry);
+                    }
+                }
+            }
+        }//end-computeDilation
+
+
+        /**
+         * @computeErosion Performs Erosion on input ary and stores it in outputAry
+         * @param zeroFramedAry
+         * @param morphAry
+         */
+        public void computeErosion(int[][] zeroFramedAry, int[][] morphAry){
+            for (int i = rowOrigin; i < rowOrigin + numImgRows; i++){
+                for (int j = colOrigin; j < colOrigin + numImgCols; j++){
+                    onePixelErosion(i, j, zeroFramedAry, morphAry);
+                }
+            }
+        }//end-computeErosion
+
+        /**
+         * @onePixelDilation applies dilation operation to a signle pixel in the image. 
+         * @param i current row index
+         * @param j current col index
+         * @param zeroFramedAry input array
+         * @param morphAry output array
+         */
+        public void onePixelDilation(int i, int j, int[][] zeroFramedAry, int[][] morphAry){
+            // Offset help us position our structuring element correctly aroud P[i,j]
+            int iOffset = i - rowOrigin;
+            int jOffset = j - colOrigin;
+
+            for (int rIndex = 0; rIndex < numStructRows; rIndex++){
+                for (int cIndex = 0; cIndex < numStructCols; cIndex++){
+                    if (structAry[rIndex][cIndex] > 0) {
+                        // Dilate
+                        morphAry[iOffset + rIndex][jOffset + cIndex] = 1;
+                    }
+                }
+            }
+        }//end-onePixelDilation
+
+
+        /**
+         * @onePixelErosion Applies erosion operation to a signle pixel in the image
+         * @param i
+         * @param j
+         * @param zeroFramedAry
+         * @param morphAry
+         */
+        public void onePixelErosion(int i, int j, int[][] zeroFramedAry, int[][] morphAry){
+            int iOffset = i - rowOrigin; // start position
+            int jOffset = j - colOrigin;    
+            boolean matchFlag = true;   // Assume that current pixel matches structuring object 
+
+            for (int rIndex = 0; rIndex < numStructRows; rIndex++){
+                for (int cIndex = 0; cIndex < numStructCols; cIndex++){
+                    // Erode
+                    // Condition 1: Checks if current element of structuring element is part of the shape 
+                    // Condition 2: Checks if corresponding pixel in the input image  P[i][j] <= 0, it means structuring element does not match the image pixel
+                    if ( (structAry[rIndex][cIndex] > 0) && (zeroFramedAry[iOffset + rIndex][jOffset + cIndex]) <= 0){
+                        matchFlag = false;
+                        cIndex++; // move forward if no match, or if P[i][j] <= 0; it means it is noise since it does not have a pixel value
+                    }
+                }
+            }
+
+            if (matchFlag) {
+                morphAry[i][j] = 1; // if Matchflag we keep this pixel
+            }else{
+                morphAry[i][j] = 0; // If not we turn it to 0
+            }
+        }
+
+        /**
+         * @aryToFile Output pixels inside of frame of inAry to fileOut
+         * @param inAry
+         * @param fileOut
+         */
+        public void aryToFile(int[][] inAry, BufferedWriter fileOut){
+            try{
+                // Write header
+                fileOut.write(numImgRows + " " + numImgCols + " " + imgMin + " " + imgMax);
+                fileOut.newLine();
+
+                for (int i = rowOrigin; i < rowOrigin + numImgRows; i++){
+                    for (int j = colOrigin; j < colOrigin + numImgCols; j++){
+                        fileOut.write(inAry[i][j] + " ");
+                    }
+                    // New line after each row
+                    fileOut.newLine();
+                }
+                // Close writer
+                fileOut.flush();
+
+            }catch(IOException e){
+                System.err.println("Error in writing array to file" + e);
+            }
+        }//end-aryToFile
+
+
+        /**
+         * @binaryPrettyPrint Prints out the input array in a formatted manner 
+         * @param inAry
+         * @param fileOut
+         */
+        public void binaryPrettyPrint(int[][] inAry, BufferedWriter fileOut){
+            try{
+                for (int i = 0; i < rowSize; i++){
+                    for (int j = 0; j < colSize; j++){
+                        if (inAry[i][j] == 0){
+                            fileOut.write(". ");
+                        }else{
+                            fileOut.write("1 ");
+                        }
+                    }
+                    fileOut.newLine();
+                }
+            }catch(IOException e){
+                System.err.println("Error in binaryPrettyPrint" + e.getMessage());
+            }
+             
+        }//end-binaryPrettyPrint
+
+
+
+
+        /**
+         * @process1 Performs Dilation to the image and stores it into the morph array
+         * @param prettyPrintFile file that will hold the human-readable output
+         */
+        public void process1(String prettyPrintFile){
+            try{
+                // Step #1 Declare output file and BufferedWriter and output file for pretty print
+                String outPutFile = "dilationOutFile.txt";
+                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));    
+                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile));
+
+                // Step #2 Zero out morphAry
+                zero2DAry(morphAry, rowSize, colSize);
+
+                // Perform Dilation
+                computeDilation(zeroFramedAry, morphAry);
+                
+                // Print to outFile
+                aryToFile(morphAry, bw);
+
+                // Pretty Print
+                binaryPrettyPrint(morphAry, prettyPrintWriter);
+
+                // Step #3 Close files
+                bw.close();
+                prettyPrintWriter.close();
+
+            }catch(IOException e){
+                System.err.println("Error in process 1" + e.getMessage());
+            }
+        }//end-process1
+
+
+        public void process2(String prettyPrintFile){
+            try {
+                // # Step 1
+                String outPutFile = "erosionOutFile.txt";
+                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));
+                BufferedWriter prettyBufferedWriter = new BufferedWriter(new FileWriter(prettyPrintFile));
+
+                // Step 2 
+                
+                // Clear out morph array to save new output
+                zero2DAry(morphAry, rowSize, colSize);
+                
+                // Perform Erosion
+                computeErosion(zeroFramedAry, morphAry);
+                
+                // Print to outFile
+                aryToFile(morphAry, bw);
+
+                // Pretty print
+                binaryPrettyPrint(morphAry, prettyBufferedWriter);
+
+                // Step #3 Close Files
+                bw.close();
+                prettyBufferedWriter.close();
+
+            }catch (IOException e){
+                System.err.println("Error in Process 2: " + e.getMessage());
+            }
+        }//end-process2
 
         public void printInstanceVariables() {
             System.out.println("Image File Variables:");
@@ -241,10 +441,12 @@ public class FloresL_Project4_Main {
 
         // ### STEP 7: Running User's Choice of Process
         if (userChoice == 1){
-            System.out.println("Running Process 1");
+            morphology.process1(args[3]);
+            System.out.println("Process 1: Dilation Execution Complete!");
         }
         else if (userChoice == 2) {
-            System.out.println("Running Process 2");
+            morphology.process2(args[3]);
+            System.out.println("Process 2: Erosion Execution Complete");
         }
         else if (userChoice == 3) {
             System.out.println("Running Process 3");
