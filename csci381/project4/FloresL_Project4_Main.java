@@ -158,6 +158,25 @@ public class FloresL_Project4_Main {
             }
         }//end-computeErosion
 
+
+        /**
+         * @computeeOpening Dilate -> Erode
+         * @param zeroFramedAry
+         * @param morphAry
+         * @param tempAry
+         */
+        public void computeOpening(int[][] zeroFramedAry, int[][] morphAry, int[][] tempAry){
+            computeErosion(zeroFramedAry, tempAry);
+            computeDilation(tempAry, morphAry);
+        }//end-computeOpening
+
+        
+        public void computeClosing(int[][] zeroFramedAry, int[][] morphAry, int[][] tempAry){
+            computeDilation(zeroFramedAry, tempAry);
+            computeErosion(tempAry, morphAry);
+        }
+
+
         /**
          * @onePixelDilation applies dilation operation to a signle pixel in the image. 
          * @param i current row index
@@ -298,6 +317,10 @@ public class FloresL_Project4_Main {
         }//end-process1
 
 
+        /**
+         * @process2 Performs Opening Erosion
+         * @param prettyPrintFile
+         */
         public void process2(String prettyPrintFile){
             try {
                 // # Step 1
@@ -327,6 +350,75 @@ public class FloresL_Project4_Main {
                 System.err.println("Error in Process 2: " + e.getMessage());
             }
         }//end-process2
+
+
+        /**
+         * @process3 perform Opening Operation: Dilate -> Erode
+         * @param prettyPrintFile
+         */
+        public void process3(String prettyPrintFile){
+            try{
+                // Step #1 Declare output file and BufferedWriter and output file for pretty print
+                String outPutFile = "openingOutFile.txt";
+                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));    
+                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile));
+
+                // Step #2 Zero out morphAry
+                zero2DAry(morphAry, rowSize, colSize);
+
+                // Perform Dilation
+                computeOpening(zeroFramedAry, morphAry, tempAry);
+                
+                // Print to outFile
+                aryToFile(morphAry, bw);
+
+                // Pretty Print
+                binaryPrettyPrint(morphAry, prettyPrintWriter);
+
+                // Step #3 Close files
+                bw.close();
+                prettyPrintWriter.close();
+
+            }catch(IOException e){
+                System.err.println("Error in process 1" + e.getMessage());
+            }
+        }//end-prcess3
+        
+
+
+        /**
+         * @process3 perform Closing Operation: Erode -> Dilate
+         * @param prettyPrintFile
+         */
+        public void process4(String prettyPrintFile){
+            try{
+                // Step #1 Declare output file and BufferedWriter and output file for pretty print
+                String outPutFile = "closingOutFile.txt";
+                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));    
+                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile));
+
+                // Step #2 Zero out morphAry
+                zero2DAry(morphAry, rowSize, colSize);
+
+                // Perform Dilation
+                computeClosing(zeroFramedAry, morphAry, tempAry);
+                
+                // Print to outFile
+                aryToFile(morphAry, bw);
+
+                // Pretty Print
+                binaryPrettyPrint(morphAry, prettyPrintWriter);
+
+                // Step #3 Close files
+                bw.close();
+                prettyPrintWriter.close();
+
+            }catch(IOException e){
+                System.err.println("Error in process 1" + e.getMessage());
+            }
+        }//end-prcess3
+
+
 
         public void printInstanceVariables() {
             System.out.println("Image File Variables:");
@@ -449,10 +541,12 @@ public class FloresL_Project4_Main {
             System.out.println("Process 2: Erosion Execution Complete");
         }
         else if (userChoice == 3) {
-            System.out.println("Running Process 3");
+            morphology.process3(args[3]);
+            System.out.println("Process 3: Opening Operation Complete");
         }
         else if (userChoice == 4) {
-            System.out.println("Running Process 4");
+            morphology.process4(args[3]);
+            System.out.println("Process 4: Closing Operation Complete");
         }
         else if (userChoice == 5) {
             System.out.println("Running Process 5");
