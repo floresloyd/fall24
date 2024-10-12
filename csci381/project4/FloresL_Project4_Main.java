@@ -265,6 +265,8 @@ public class FloresL_Project4_Main {
          */
         public void binaryPrettyPrint(int[][] inAry, BufferedWriter fileOut){
             try{
+                fileOut.write(rowSize + " " + colSize + " " + imgMin + " " + imgMax);
+                fileOut.newLine();
                 for (int i = 0; i < rowSize; i++){
                     for (int j = 0; j < colSize; j++){
                         if (inAry[i][j] == 0){
@@ -278,9 +280,60 @@ public class FloresL_Project4_Main {
             }catch(IOException e){
                 System.err.println("Error in binaryPrettyPrint" + e.getMessage());
             }
-             
         }//end-binaryPrettyPrint
 
+
+        /**
+         * @binaryStrictPrettyPrint Prints out the struct array in a formatted manner 
+         * @param inAry
+         * @param fileOut
+         */
+        public void binaryStructPrettyPrint(int[][] structAry, BufferedWriter fileOut){
+            try{
+                fileOut.write(numStructRows + " " + numStructCols + " " + structMin + " " + structMax);
+                fileOut.newLine();
+                for (int i = 0; i < numStructRows; i++){
+                    for (int j = 0; j < numStructCols; j++){
+                        if (structAry[i][j] == 0){
+                            fileOut.write(". ");
+                        }else{
+                            fileOut.write("1 ");
+                        }
+                    }
+                    fileOut.newLine();
+                }
+            }catch(IOException e){
+                System.err.println("Error in binaryPrettyPrint" + e.getMessage());
+            }
+        }//end-binaryPrettyPrint
+
+
+        /**
+         * @binaryImagePrettyPrint Prints out the image array in a formatted manner 
+         * @param inAry
+         * @param fileOut
+         */
+        public void binaryImagePrettyPrint(int[][] inAry, BufferedWriter fileOut){
+            try {
+                fileOut.write(numImgRows + " " + numImgCols + " " + imgMin + " " + imgMax);
+                fileOut.newLine();
+                
+                // Iterate over the actual image dimensions, starting from the rowOrigin and colOrigin
+                for (int i = rowOrigin; i < rowOrigin + numImgRows; i++) {
+                    for (int j = colOrigin; j < colOrigin + numImgCols; j++) {
+                        if (inAry[i][j] == 0) {
+                            fileOut.write(". ");
+                        } else {
+                            fileOut.write("1 ");
+                        }
+                    }
+                    fileOut.newLine();  // New line after each row
+                }
+                fileOut.flush();
+            } catch (IOException e) {
+                System.err.println("Error in binaryImagePrettyPrint: " + e.getMessage());
+            }
+        }//end-binaryPrettyPrint
 
 
 
@@ -288,12 +341,21 @@ public class FloresL_Project4_Main {
          * @process1 Performs Dilation to the image and stores it into the morph array
          * @param prettyPrintFile file that will hold the human-readable output
          */
-        public void process1(String prettyPrintFile){
+        public void process1(String prettyPrintFile, boolean append){
             try{
                 // Step #1 Declare output file and BufferedWriter and output file for pretty print
+                // OutFile
                 String outPutFile = "dilationOutFile.txt";
-                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));    
-                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile));
+                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));
+                bw.write("Dilation \n");    
+                // PrettyPrint
+                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile, append));
+                prettyPrintWriter.write("Original Image: \n");
+                binaryImagePrettyPrint(zeroFramedAry, prettyPrintWriter);
+                prettyPrintWriter.write("\n");
+                prettyPrintWriter.write("Structuring Object: \n");
+                binaryStructPrettyPrint(structAry, prettyPrintWriter);
+                prettyPrintWriter.write("\n");
 
                 // Step #2 Zero out morphAry
                 zero2DAry(morphAry, rowSize, colSize);
@@ -305,9 +367,11 @@ public class FloresL_Project4_Main {
                 aryToFile(morphAry, bw);
 
                 // Pretty Print
+                prettyPrintWriter.write("Dilation \n");
                 binaryPrettyPrint(morphAry, prettyPrintWriter);
 
                 // Step #3 Close files
+                prettyPrintWriter.write("\n");
                 bw.close();
                 prettyPrintWriter.close();
 
@@ -321,12 +385,21 @@ public class FloresL_Project4_Main {
          * @process2 Performs Opening Erosion
          * @param prettyPrintFile
          */
-        public void process2(String prettyPrintFile){
+        public void process2(String prettyPrintFile, boolean append){
             try {
                 // # Step 1
+                // OutFile
                 String outPutFile = "erosionOutFile.txt";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));
-                BufferedWriter prettyBufferedWriter = new BufferedWriter(new FileWriter(prettyPrintFile));
+                bw.write("Erosion \n");   
+                // PrettyPrint 
+                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile, append));
+                prettyPrintWriter.write("Original Image: \n");
+                binaryImagePrettyPrint(zeroFramedAry, prettyPrintWriter);
+                prettyPrintWriter.write("\n");
+                prettyPrintWriter.write("Structuring Object: \n");
+                binaryStructPrettyPrint(structAry, prettyPrintWriter);
+                prettyPrintWriter.write("\n");
 
                 // Step 2 
                 
@@ -340,11 +413,13 @@ public class FloresL_Project4_Main {
                 aryToFile(morphAry, bw);
 
                 // Pretty print
-                binaryPrettyPrint(morphAry, prettyBufferedWriter);
+                prettyPrintWriter.write("Erosion \n");
+                binaryPrettyPrint(morphAry, prettyPrintWriter);
 
                 // Step #3 Close Files
+                prettyPrintWriter.write("\n");
                 bw.close();
-                prettyBufferedWriter.close();
+                prettyPrintWriter.close();
 
             }catch (IOException e){
                 System.err.println("Error in Process 2: " + e.getMessage());
@@ -356,31 +431,42 @@ public class FloresL_Project4_Main {
          * @process3 perform Opening Operation: Dilate -> Erode
          * @param prettyPrintFile
          */
-        public void process3(String prettyPrintFile){
-            try{
+        public void process3(String prettyPrintFile, boolean append){
+            try {
                 // Step #1 Declare output file and BufferedWriter and output file for pretty print
+                // outFile
                 String outPutFile = "openingOutFile.txt";
-                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));    
-                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile));
-
+                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));   
+                bw.write("Opening \n");     
+                // PrettyPrint
+                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile, append));
+                prettyPrintWriter.write("Original Image: \n");
+                binaryImagePrettyPrint(zeroFramedAry, prettyPrintWriter);
+                prettyPrintWriter.write("\n");
+                prettyPrintWriter.write("Structuring Object: \n");
+                binaryStructPrettyPrint(structAry, prettyPrintWriter);
+                prettyPrintWriter.write("\n");
+        
                 // Step #2 Zero out morphAry
                 zero2DAry(morphAry, rowSize, colSize);
-
-                // Perform Dilation
+        
+                // Perform Opening (Erosion -> Dilation)
                 computeOpening(zeroFramedAry, morphAry, tempAry);
-                
-                // Print to outFile
+        
+                // Print final result to outFile
                 aryToFile(morphAry, bw);
-
-                // Pretty Print
+        
+                // Pretty Print final result
+                prettyPrintWriter.write("Opening \n");
                 binaryPrettyPrint(morphAry, prettyPrintWriter);
-
+        
                 // Step #3 Close files
+                prettyPrintWriter.write("\n");
                 bw.close();
                 prettyPrintWriter.close();
-
-            }catch(IOException e){
-                System.err.println("Error in process 1" + e.getMessage());
+        
+            } catch(IOException e) {
+                System.err.println("Error in process 3: " + e.getMessage());
             }
         }//end-prcess3
         
@@ -390,12 +476,21 @@ public class FloresL_Project4_Main {
          * @process3 perform Closing Operation: Erode -> Dilate
          * @param prettyPrintFile
          */
-        public void process4(String prettyPrintFile){
+        public void process4(String prettyPrintFile, boolean append){
             try{
                 // Step #1 Declare output file and BufferedWriter and output file for pretty print
+                // outFile
                 String outPutFile = "closingOutFile.txt";
-                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));    
-                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile));
+                BufferedWriter bw = new BufferedWriter(new FileWriter(outPutFile));   
+                bw.write("Closing \n");
+                // PrettyPrint     
+                BufferedWriter prettyPrintWriter = new BufferedWriter(new FileWriter(prettyPrintFile, append));
+                prettyPrintWriter.write("Original Image: \n");
+                binaryImagePrettyPrint(zeroFramedAry, prettyPrintWriter);
+                prettyPrintWriter.write("\n");
+                prettyPrintWriter.write("Structuring Object: \n");
+                binaryStructPrettyPrint(structAry, prettyPrintWriter);
+                prettyPrintWriter.write("\n");
 
                 // Step #2 Zero out morphAry
                 zero2DAry(morphAry, rowSize, colSize);
@@ -407,36 +502,30 @@ public class FloresL_Project4_Main {
                 aryToFile(morphAry, bw);
 
                 // Pretty Print
+                prettyPrintWriter.write("Closing \n");
                 binaryPrettyPrint(morphAry, prettyPrintWriter);
 
                 // Step #3 Close files
+                prettyPrintWriter.write("\n");
                 bw.close();
                 prettyPrintWriter.close();
 
             }catch(IOException e){
                 System.err.println("Error in process 1" + e.getMessage());
             }
-        }//end-prcess3
+        }//end-prcess4
 
 
-
-        public void printInstanceVariables() {
-            System.out.println("Image File Variables:");
-            System.out.println("numImgRows: " + numImgRows);
-            System.out.println("numImgCols: " + numImgCols);
-            System.out.println("imgMin: " + imgMin);
-            System.out.println("imgMax: " + imgMax);
-            System.out.println("Structuring Element Variables:");
-            System.out.println("numStructRows: " + numStructRows);
-            System.out.println("numStructCols: " + numStructCols);
-            System.out.println("structMin: " + structMin);
-            System.out.println("structMax: " + structMax);
-            System.out.println("rowOrigin: " + rowOrigin);
-            System.out.println("colOrigin: " + colOrigin);
-            System.out.println("Array Sizes:");
-            System.out.println("zeroFramedAry size: " + zeroFramedAry.length + "x" + zeroFramedAry[0].length);
-            System.out.println("structAry size: " + structAry.length + "x" + structAry[0].length);
-        }
+         /**
+          * @process5 Calls: Dilation -> Erosion -> Opening -> Closing
+          * @param prettyPrintFile
+          */
+        public void process5(String prettyPrintFile){
+            process1(prettyPrintFile, false);
+            process2(prettyPrintFile, true);
+            process3(prettyPrintFile, true);
+            process4(prettyPrintFile, true);
+        }//end-Process5
 
 
         public void print2Dary(int[][] ary, int r, int c) {
@@ -448,11 +537,7 @@ public class FloresL_Project4_Main {
                 // Move to the next line after each row
                 System.out.println();
             }
-        }
-    
-        
-
-
+        }    
     }//end-class-Morphology
 
     public static void main(String[] args){
@@ -533,23 +618,24 @@ public class FloresL_Project4_Main {
 
         // ### STEP 7: Running User's Choice of Process
         if (userChoice == 1){
-            morphology.process1(args[3]);
+            morphology.process1(args[3], false);
             System.out.println("Process 1: Dilation Execution Complete!");
         }
         else if (userChoice == 2) {
-            morphology.process2(args[3]);
+            morphology.process2(args[3], false);
             System.out.println("Process 2: Erosion Execution Complete");
         }
         else if (userChoice == 3) {
-            morphology.process3(args[3]);
+            morphology.process3(args[3], false);
             System.out.println("Process 3: Opening Operation Complete");
         }
         else if (userChoice == 4) {
-            morphology.process4(args[3]);
+            morphology.process4(args[3], false);
             System.out.println("Process 4: Closing Operation Complete");
         }
         else if (userChoice == 5) {
-            System.out.println("Running Process 5");
+            morphology.process5(args[3]);
+            System.out.println("Process 5: Calls Process 1, 2, 3, 4 Complete!");
         }
         else{
             throw new IllegalArgumentException("Invalid Process! The only available options are: 1, 2, 3, 4, 5"); 
