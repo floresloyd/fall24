@@ -1,0 +1,3 @@
+$ g++ FloresL_Project5_Main.cpp -o FloresL_Project5_Main
+
+$ ./FloresL_Project5_Main.exe img1.txt 2 prettyPrintFile.txt skeletonFile.txt deCompressedFile.txt logFile.txt 

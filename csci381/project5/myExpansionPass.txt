@@ -1,0 +1,86 @@
+
+        // /**
+        //  * 
+        //  */
+        // void expansionPass1(int** ZFAry, int distanceChoice, ostream& logFile){
+        //     logFile << "expansionPass1 ..." << endl;
+        //     int a, b, c, d, pij, e, f, g, h, neighborhoodMax;
+
+        //     for (int i = 1; i <= numRows; i++){
+        //         for (int j = 1; j <= numCols; j++){
+
+        //             if (ZFAry[i][j] == 0){
+
+        //                 // Get values of the neighborhood 
+        //                 a = ZFAry[i - 1][j - 1];
+        //                 b = ZFAry[i - 1][j];
+        //                 c = ZFAry[i - 1][j + 1];
+        //                 d = ZFAry[i][j - 1];
+        //                 pij = ZFAry[i][j];
+        //                 e = ZFAry[i][j + 1];
+        //                 f = ZFAry[i + 1][j - 1];
+        //                 g = ZFAry[i + 1][j];
+        //                 h = ZFAry[i + 1][j + 1];
+
+        //                 if (pij == 0){
+        //                     // 8-connected
+        //                     if (distanceChoice == 8){
+        //                         neighborhoodMax = max(max(max(a - 1, b - 1), max(c - 1, d - 1)), max(max(e - 1, f - 1), max(g - 1, h - 1)));
+        //                         if (pij < neighborhoodMax){
+        //                             ZFAry[i][j] = neighborhoodMax;
+        //                         } 
+        //                     }//end-8-connected
+
+        //                     else if (distanceChoice == 4){
+        //                         neighborhoodMax = max(max(max(a - 2, b - 1), max(c - 2, d - 1)), max(max(e - 1, f - 2), max(g - 1, h - 2)));
+        //                         if (pij < neighborhoodMax){
+        //                             ZFAry[i][j] = neighborhoodMax;
+        //                         }
+        //                     }//end-4-connected
+        //                 }
+        //             }//end-if
+        //         }//end-j-loop
+        //     }//end-i-loop
+        // }//end-expansionPass1
+
+
+        // void expansionPass2(int** ZFAry, int distanceChoice, ostream& logFile){
+        //     logFile << "expansionPass1 ..." << endl;
+        //     int a, b, c, d, pij, e, f, g, h, neighborhoodMax;
+
+        //     for (int i = numRows; i >= 1; i--){
+        //         for (int j = numCols; j >= 1; j--){
+
+        //             if (ZFAry[i][j] == 0){
+
+        //                 // Get values of the neighborhood 
+        //                 a = ZFAry[i - 1][j - 1];
+        //                 b = ZFAry[i - 1][j];
+        //                 c = ZFAry[i - 1][j + 1];
+        //                 d = ZFAry[i][j - 1];
+        //                 pij = ZFAry[i][j];
+        //                 e = ZFAry[i][j + 1];
+        //                 f = ZFAry[i + 1][j - 1];
+        //                 g = ZFAry[i + 1][j];
+        //                 h = ZFAry[i + 1][j + 1];
+
+        //                 if (pij == 0){
+        //                     // 8-connected
+        //                     if (distanceChoice == 8){
+        //                         neighborhoodMax = max(max(max(a - 1, b - 1), max(c - 1, d - 1)), max(max(e - 1, f - 1), max(g - 1, h - 1)));
+        //                         if (pij < neighborhoodMax){
+        //                             ZFAry[i][j] = neighborhoodMax;
+        //                         } 
+        //                     }//end-8-connected
+
+        //                     else if (distanceChoice == 4){
+        //                         neighborhoodMax = max(max(max(a - 2, b - 1), max(c - 2, d - 1)), max(max(e - 1, f - 2), max(g - 1, h - 2)));
+        //                         if (pij < neighborhoodMax){
+        //                             ZFAry[i][j] = neighborhoodMax;
+        //                         }
+        //                     }//end-4-connected
+        //                 }
+        //             }//end-if
+        //         }//end-j-loop
+        //     }//end-i-loop
+        // }//end-expansionPass2
