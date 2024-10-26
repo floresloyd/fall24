@@ -1,0 +1,11 @@
+1. compile : g++ FloresL_Project1_Main.cpp -o FloresL_Project1_Main
+2. Run :   ./FloresL_Project1_Main Project1_data1.txt 6 histCountFile.txt histGraphFile.txt binThrFile.txt logFile.txt
+
+thrVal: use 6 for data1 and 29 for data2.
+
+
+Project1_data.txt   : Input File 
+thrVal              : Threshold value to filter the pixel values 
+histCountFile.txt   : Frequency Map of pixel values to be referenced to print histogram 
+histGraphFile.txt   : contains the histogram of the input image 
+binaryThrFile.txt   : Contains binary image resulting from the binary thresholding 
