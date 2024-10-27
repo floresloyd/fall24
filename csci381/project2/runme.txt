@@ -1,0 +1,17 @@
+1. Compile  :   javac FloresL_Project2_Main.java
+2. Run      :   java FloresL_Project2_Main <inFile> <histFile> <GaussFile> <logFile>
+                java FloresL_Project2_Main hist1.txt histFile.txt GaussFile.txt logFile.txt
+
+
+hist1.txt    : Input histogram 
+histFile.txt : Pretty print of histogram 
+GaussFile.txt: Holds the best fitting gaussarray. 
+                The best one will have the least error
+                as the process iterates from minval -> max val
+                then calculates how well the gauss curve fits on the histogram
+                by fitting a gauss curve and calculating the absolute sum of errors
+
+logfile.txt : logs
+
+
+Goal : Given a histogram select the best threshold and perform bi-gaussian threshold selction algorithm and then print out the best fitting gaussian array. 
