@@ -1,3 +1,5 @@
-$ g++ FloresL_Project5_Main.cpp -o FloresL_Project5_Main
+1.  compile:    g++ FloresL_Project5_Main.cpp -o FloresL_Project5_Main
 
-$ ./FloresL_Project5_Main.exe img1.txt 2 prettyPrintFile.txt skeletonFile.txt deCompressedFile.txt logFile.txt 
+2.  run    :    ./FloresL_Project5_Main.exe img1.txt 2 prettyPrintFile.txt skeletonFile.txt deCompressedFile.txt logFile.txt 
+
+3.  Goal   :    Given an input image we can perform distance transformation (1: 4connect; 2: 8connect) to extract skeleton and then we compress the image. We then expand it to hopefully get the original output image.
