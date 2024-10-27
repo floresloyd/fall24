@@ -1,0 +1,13 @@
+1.  compile:    javac FloresL_Project4_Main.java 
+2.  Run    :    java FloresL_Project4_Main <inFile> <structFile> <Process#> <prettyPrintFile>
+                java FloresL_Project4_Main data1.txt Elem1.txt 1 outFile.txt
+
+Process: 
+    1 Dilation 
+    2 Erosion
+    3 Opening: Dilate -> Erode 
+    4 Closing: Erode  -> Dilate 
+
+3. Goal
+    Given inputImage and a structElement we perform morphological operations (Dilate, Erode, Open, Close) on an image 
+    output it to our outFiles
