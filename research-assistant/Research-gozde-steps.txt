@@ -1,0 +1,26 @@
+All Image are in PNG format 
+
+png2nii.py -> process and convert to 3d
+images     -> input images
+
+
+Step 1: Run Script On Input images (Will save output to same dir) 
+Step 2: Run Script on Processed Images (Used as a guide) 
+Step 3: Run Script on vessel_proba (Binary = True)
+
+Step 4: Open 3D Slicer & Drag image/processed
+	- Description (Input img && Processed Image) = Volume
+
+Step 5: Drag Vessel Proba 
+	- Description (Vessel_proba) = Segmentation
+
+Step 6: 
+	- Slide S-slider to R; 0.00
+	- (DATA) Double Click and change color 1.nii.gz -> color(vein)
+	- Make Bigger
+	- (SEGMENT EDITOR) 
+		- Deleting 
+		- Drawing, Make diameter to 1%, zoom 
+
+
+Step 7: Close iamge so we can focus on the vessel mask and ctrl + s 
