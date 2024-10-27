@@ -9,3 +9,6 @@ thrVal              : Threshold value to filter the pixel values
 histCountFile.txt   : Frequency Map of pixel values to be referenced to print histogram 
 histGraphFile.txt   : contains the histogram of the input image 
 binaryThrFile.txt   : Contains binary image resulting from the binary thresholding 
+
+
+Goal: Given an input image and a threshold perform binary threshold to convert greyscale image to a binary image. 
