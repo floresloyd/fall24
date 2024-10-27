@@ -50,7 +50,7 @@ class Enhancement {
                 thrAry = allocate2DArray(numRows + 2, numCols + 2);
                 mask2DAry = allocate2DArray(maskRows, maskCols); 
 
-                // Make the Dynamic arrays only have zeroes
+                // Make the 1D arrays only have zeroes
                 for (int i = 0; i < 9; i++) {
                     mask1DAry[i] = 0;
                     neighbor1DAry[i] = 0;

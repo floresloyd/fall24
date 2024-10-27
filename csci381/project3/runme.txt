@@ -1,0 +1,13 @@
+1. compile      :   g++ FloresL_Project3_Main.cpp -o FloresL_Project3_Main
+2. run          :   ./FloresL_Project3_Main <inputImageFile> <maskFile> <threshold> <avgOutFile> <medianOutFile> <gaussOutFile>
+                    ./FloresL_Project3_Main img1.txt mask.txt 1 avgOutFile.txt medianOut.txt gassOut.txt 
+
+
+img1.txt            : input image 
+mask.txt            : gauussian mask used for gaussian filtering 
+avgOutFile.txt      : result of mean filtering 
+medianOutFile.txt   : result of median filtering 
+gaussOutFile.txt    : result of gaussian filtering 
+
+
+Goal of Project: Perform the 3 neighborhood operations on input image to reduce noise. Mean Filtering / Avg Filtering , Median Filtering, Gaussian Filtering with Gaussian Mask. 
