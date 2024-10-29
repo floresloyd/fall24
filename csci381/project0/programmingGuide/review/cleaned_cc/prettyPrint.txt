@@ -1,0 +1,54 @@
+Result of: Pass 1
+1 1 1 1 1 1 1 
+1 . . 1 1 . 1 
+1 . . 1 1 . 1 
+1 1 1 . . 2 1 
+1 . 1 . . 2 1 
+1 . 1 1 1 1 1 
+1 1 1 1 . . 1 
+
+Equivalency Table after: Pass1 indexing starts from 1
+1  2  
+1  1  
+
+Result of: Pass 2
+1 1 1 1 1 1 1 
+1 . . 1 1 . 1 
+1 . . 1 1 . 1 
+1 1 1 . . 1 1 
+1 . 1 . . 1 1 
+1 . 1 1 1 1 1 
+1 1 1 1 . . 1 
+
+Equivalency Table after: Pass2 indexing starts from 1
+1  2  
+1  1  
+
+Equivalency Table after: EQ Table Management (indexing starts from 1)
+1  2  
+1  1  
+
+Result of: Pass 3
+1 1 1 1 1 1 1 
+1 . . 1 1 . 1 
+1 . . 1 1 . 1 
+1 1 1 . . 1 1 
+1 . 1 . . 1 1 
+1 . 1 1 1 1 1 
+1 1 1 1 . . 1 
+
+Equivalency Table after: Pass3 indexing starts from 1
+1  2  
+1  1  
+
+Number of Connected Components = 1
+
+After drawBoxes
+1 1 1 1 1 1 1 
+1 . . 1 1 . 1 
+1 . . 1 1 . 1 
+1 1 1 . . 1 1 
+1 . 1 . . 1 1 
+1 . 1 1 1 1 1 
+1 1 1 1 1 1 1 
+
