@@ -396,8 +396,8 @@ public class cleaned_corner_preserve {
 
 /**
  * 
-compile: javac cleaned_corner_preserve.java
-run    : java cleaned_corner_preserve test_input.txt 2 outFile.txt reformattedOutFile.txt histogram.txt debug.txt
+compile: javac SunR_Project2_Main.java 
+run    : java SunR_Project2_Main test_input.txt 2 output1_3.txt output2_3.txt output3_3.txt debug_3.txt
 
  */
 

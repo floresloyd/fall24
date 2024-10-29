@@ -1,0 +1,407 @@
+entering cornerPreserveAvg() method
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=2; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=2; result=28
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=2; result=13
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=2; result=37
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=2; result=9
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=2; result=18
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=2; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=2; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=3; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=3; result=29
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=3; result=19
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=3; result=44
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=3; result=12
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=3; result=27
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=3; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=3; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=4; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=4; result=33
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=4; result=27
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=4; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=4; result=18
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=4; result=36
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=4; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=4; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=5; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=5; result=40
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=5; result=35
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=5; result=55
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=5; result=27
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=5; result=42
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=5; result=62
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=5; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=6; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=6; result=47
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=6; result=41
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=6; result=56
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=6; result=36
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=6; result=45
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=6; result=63
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=2; j=6; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=2; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=2; result=46
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=2; result=18
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=2; result=49
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=2; result=24
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=2; result=33
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=2; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=2; result=63
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=3; result=53
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=3; result=47
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=3; result=24
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=3; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=3; result=27
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=3; result=42
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=3; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=3; result=62
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=4; result=47
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=4; result=49
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=4; result=32
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=4; result=55
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=4; result=33
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=4; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=4; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=4; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=5; result=41
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=5; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=5; result=40
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=5; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=5; result=42
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=5; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=5; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=5; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=6; result=37
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=6; result=55
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=6; result=46
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=6; result=58
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=6; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=6; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=6; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=3; j=6; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=2; result=40
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=2; result=55
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=2; result=37
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=2; result=58
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=2; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=2; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=2; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=2; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=3; result=43
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=3; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=3; result=41
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=3; result=58
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=3; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=3; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=3; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=3; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=4; result=47
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=4; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=4; result=47
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=4; result=58
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=4; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=4; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=4; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=4; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=5; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=5; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=5; result=53
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=5; result=56
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=5; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=5; result=62
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=5; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=5; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=6; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=6; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=6; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=6; result=55
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=6; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=6; result=63
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=6; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=4; j=6; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=2; result=29
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=2; result=47
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=2; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=2; result=53
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=2; result=63
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=2; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=2; result=36
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=2; result=27
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=3; result=38
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=3; result=46
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=3; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=3; result=55
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=3; result=62
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=3; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=3; result=45
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=3; result=30
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=4; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=4; result=45
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=4; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=4; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=4; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=4; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=4; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=4; result=36
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=5; result=64
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=5; result=47
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=5; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=5; result=56
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=5; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=5; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=5; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=5; result=45
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=6; result=73
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=6; result=49
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=6; result=67
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=6; result=55
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=6; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=6; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=6; result=63
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=5; j=6; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=2; result=26
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=2; result=32
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=2; result=63
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=2; result=43
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=2; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=2; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=2; result=36
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=2; result=18
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=3; result=38
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=3; result=34
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=3; result=60
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=3; result=52
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=3; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=3; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=3; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=3; result=24
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=4; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=4; result=39
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=4; result=55
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=4; result=61
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=4; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=4; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=4; result=72
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=4; result=36
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=5; result=70
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=5; result=48
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=5; result=50
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=5; result=66
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=5; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=5; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=5; result=84
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=5; result=54
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=6; result=82
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=6; result=57
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=6; result=47
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=6; result=68
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=6; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=6; result=51
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=6; result=90
+Entering convolution5x5 method
+Before leaving convolution5x5 method(): i=6; j=6; result=72
+In cornerPreserveAvg(): newMax=10 newMin=1
+Leaving cornerPreserveAvg () method
+entering computeHist method ()
+Leaving computeHist method
+entering printHist method
+Leaving printHist method
