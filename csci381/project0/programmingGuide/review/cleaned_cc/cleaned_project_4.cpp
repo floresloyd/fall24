@@ -673,3 +673,16 @@ RUN     -> ./cleared_proj4  img1.txt 4 Y prettyPrint.txt labeledOutFile.txt prop
     - During this pass, CCproperty is populated with details about each connected component (like pixel count and bounding box dimensions), using the final labels determined by EQAry.
 
  */
+
+
+                //     if (ZFAry[i][j] > 0){
+                //         int a = ZFAry[i - 1][j];
+                //         int b = ZFAry[i][j - 1];
+                //         int array[2];
+                //         array[0] = a;
+                //         array[1] = b;
+                //         sort(array, array + 2);
+
+                //         int min
+                //     }
+                // }
