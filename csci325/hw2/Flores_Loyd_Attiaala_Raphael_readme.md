@@ -1,5 +1,5 @@
 `Files`
-1. Flores_Loyd_Homework_2.ipynb: Contains all the Python code to implement the homework. The way to run it is just line by line
+1. Flores_Loyd_Attiaala_Raphael_Homework_2.ipynb: Contains all the Python code to implement the homework. The way to run it is just line by line
 
 
 `What did you finish`
