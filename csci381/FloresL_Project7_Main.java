@@ -347,6 +347,7 @@ public class FloresL_Project7_Main {
             
             // Step 3 - 6: Apply iterative thinning until there are no more changes 
             while (true) {
+                thinning.changeCount = 0;   // prevent foreverloop
                 // Step 3: Apply thinning
                 thinning.thinning(thinning.aryOne, thinning.aryTwo, logWriter);
     
