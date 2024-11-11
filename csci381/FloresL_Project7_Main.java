@@ -33,13 +33,21 @@ public class FloresL_Project7_Main {
             this.aryTwo = new int[numRows + 2][numCols + 2];
 
             // Instantiate to Zero
-            for (int i = 0; i < aryOne.length; i++){
-                for (int j = 0; j < aryOne[0].length; j++){
-                    aryOne[i][j] = 0;
-                    aryTwo[i][j] = 0;
-                }
-            }
+            zeroFramed(aryOne);
+            zeroFramed(aryTwo);
         }//end-public-Thinning
+
+        public void zeroFramed(int[][] ary) {
+            for (int i = 0; i < numRows + 2; i++) {
+                ary[i][0] = 0;
+                ary[i][numCols + 1] = 0;
+            }
+            for (int j = 0; j < numCols + 2; j++) {
+                ary[0][j] = 0;
+                ary[numRows + 1][j] = 0;
+            }
+        }
+        
 
         public void thinning(int[][] aryOne, int[][] aryTwo, BufferedWriter logWriter){
             try{
@@ -80,125 +88,118 @@ public class FloresL_Project7_Main {
             }
         }//end-void-thinning
 
-        public void northThinning(int[][] aryOne, int[][] aryTwo, BufferedWriter logWriter){
-            try{
-                logWriter.write("Entering northThinning (); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
-                int nonZeroCount = 0;
+        public void northThinning(int[][] aryOne, int[][] aryTwo, BufferedWriter logWriter) {
+            try {
+                logWriter.write("Entering northThinning(); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
+                int nonZeroCount;
                 boolean flag;
-                for (int i = 1; i < numRows + 1; i++){
-                    for (int j = 1; j < numCols + 1; j++){
-
-                        // Check p[i][j] is an object pixel and its north neighbor is zero
-                        if (aryOne[i][j] > 0 && aryOne[i - 1][j] == 0){
+                for (int i = 1; i < numRows + 1; i++) {
+                    for (int j = 1; j < numCols + 1; j++) {
+                        // Check if aryOne[i][j] is an object pixel and its north neighbor is zero
+                        if (aryOne[i][j] > 0 && aryOne[i - 1][j] == 0) {
                             nonZeroCount = countNonZeroNeighbors(aryOne, i, j);
                             flag = checkConnector(aryOne, i, j);
-
-                            if (nonZeroCount >= 4 && flag == false){
+                            if (nonZeroCount >= 4 && !flag) {
                                 aryTwo[i][j] = 0;
-                                changeCount ++;
+                                changeCount++;
+                            } else {
+                                aryTwo[i][j] = aryOne[i][j]; // Retain original value if not changed
                             }
-                            else {
-                                aryTwo[i][j] = aryOne[i][j];
-                            }
-
+                        } else {
+                            aryTwo[i][j] = aryOne[i][j]; // Retain original value if conditions are not met
                         }
                     }
                 }
-                logWriter.write("Leaving northThinning (); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
-            }catch(IOException e){
-                System.err.println("Error in prettyDotPrint: " + e.getMessage());
+                logWriter.write("Leaving northThinning(); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
+            } catch (IOException e) {
+                System.err.println("Error in northThinning: " + e.getMessage());
             }
         }
-
-        public void southThinning(int[][] aryOne, int[][] aryTwo, BufferedWriter logWriter){
-            try{
-                logWriter.write("Entering southThinning (); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
-                int nonZeroCount = 0;
+        
+        public void southThinning(int[][] aryOne, int[][] aryTwo, BufferedWriter logWriter) {
+            try {
+                logWriter.write("Entering southThinning(); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
+                int nonZeroCount;
                 boolean flag;
-                for (int i = 1; i < numRows + 1; i++){
-                    for (int j = 1; j < numCols + 1; j++){
-
-                        // Check p[i][j] is an object pixel and its south neighbor is zero
-                        if (aryOne[i][j] > 0 && aryOne[i + 1][j] == 0){
+                for (int i = 1; i < numRows + 1; i++) {
+                    for (int j = 1; j < numCols + 1; j++) {
+                        // Check if aryOne[i][j] is an object pixel and its south neighbor is zero
+                        if (aryOne[i][j] > 0 && aryOne[i + 1][j] == 0) {
                             nonZeroCount = countNonZeroNeighbors(aryOne, i, j);
                             flag = checkConnector(aryOne, i, j);
-
-                            if (nonZeroCount >= 4 && flag == false){
+                            if (nonZeroCount >= 4 && !flag) {
                                 aryTwo[i][j] = 0;
-                                changeCount ++;
+                                changeCount++;
+                            } else {
+                                aryTwo[i][j] = aryOne[i][j]; // Retain original value if not changed
                             }
-                            else {
-                                aryTwo[i][j] = aryOne[i][j];
-                            }
-
+                        } else {
+                            aryTwo[i][j] = aryOne[i][j]; // Retain original value if conditions are not met
                         }
                     }
                 }
-                logWriter.write("Leaving southThinning (); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
-            }catch(IOException e){
-                System.err.println("Error in prettyDotPrint: " + e.getMessage());
+                logWriter.write("Leaving southThinning(); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
+            } catch (IOException e) {
+                System.err.println("Error in southThinning: " + e.getMessage());
             }
         }
-
-        public void westThinning(int[][] aryOne, int[][] aryTwo, BufferedWriter logWriter){
-            try{
-                logWriter.write("Entering westThinning (); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
-                int nonZeroCount = 0;
+        
+        public void westThinning(int[][] aryOne, int[][] aryTwo, BufferedWriter logWriter) {
+            try {
+                logWriter.write("Entering westThinning(); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
+                int nonZeroCount;
                 boolean flag;
-                for (int i = 1; i < numRows + 1; i++){
-                    for (int j = 1; j < numCols + 1; j++){
-
-                        // Check p[i][j] is an object pixel and its west neighbor is zero
-                        if (aryOne[i][j] > 0 && aryOne[i][j - 1] == 0){
+                for (int i = 1; i < numRows + 1; i++) {
+                    for (int j = 1; j < numCols + 1; j++) {
+                        // Check if aryOne[i][j] is an object pixel and its west neighbor is zero
+                        if (aryOne[i][j] > 0 && aryOne[i][j - 1] == 0) {
                             nonZeroCount = countNonZeroNeighbors(aryOne, i, j);
                             flag = checkConnector(aryOne, i, j);
-
-                            if (nonZeroCount >= 4 && flag == false){
+                            if (nonZeroCount >= 4 && !flag) {
                                 aryTwo[i][j] = 0;
-                                changeCount ++;
+                                changeCount++;
+                            } else {
+                                aryTwo[i][j] = aryOne[i][j]; // Retain original value if not changed
                             }
-                            else {
-                                aryTwo[i][j] = aryOne[i][j];
-                            }
-
+                        } else {
+                            aryTwo[i][j] = aryOne[i][j]; // Retain original value if conditions are not met
                         }
                     }
                 }
-                logWriter.write("Leaving westThinning (); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
-            }catch(IOException e){
-                System.err.println("Error in prettyDotPrint: " + e.getMessage());
+                logWriter.write("Leaving westThinning(); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
+            } catch (IOException e) {
+                System.err.println("Error in westThinning: " + e.getMessage());
             }
         }
-
-        public void eastThinning(int[][] aryOne, int[][] aryTwo, BufferedWriter logWriter){
-            try{
-                logWriter.write("Entering eastThinning (); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
-                int nonZeroCount = 0;
+        
+        public void eastThinning(int[][] aryOne, int[][] aryTwo, BufferedWriter logWriter) {
+            try {
+                logWriter.write("Entering eastThinning(); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
+                int nonZeroCount;
                 boolean flag;
-                for (int i = 1; i < numRows + 1; i++){
-                    for (int j = 1; j < numCols + 1; j++){
-
-                        // Check p[i][j] is an object pixel and its west neighbor is zero
-                        if (aryOne[i][j] > 0 && aryOne[i][j + 1] == 0){
+                for (int i = 1; i < numRows + 1; i++) {
+                    for (int j = 1; j < numCols + 1; j++) {
+                        // Check if aryOne[i][j] is an object pixel and its east neighbor is zero
+                        if (aryOne[i][j] > 0 && aryOne[i][j + 1] == 0) {
                             nonZeroCount = countNonZeroNeighbors(aryOne, i, j);
                             flag = checkConnector(aryOne, i, j);
-
-                            if (nonZeroCount >= 4 && flag == false){
+                            if (nonZeroCount >= 4 && !flag) {
                                 aryTwo[i][j] = 0;
-                                changeCount ++;
+                                changeCount++;
+                            } else {
+                                aryTwo[i][j] = aryOne[i][j]; // Retain original value if not changed
                             }
-                            else {
-                                aryTwo[i][j] = aryOne[i][j];
-                            }
-
+                        } else {
+                            aryTwo[i][j] = aryOne[i][j]; // Retain original value if conditions are not met
                         }
                     }
                 }
-                logWriter.write("Leaving eastThinning (); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
-            }catch(IOException e){
-                System.err.println("Error in prettyDotPrint: " + e.getMessage());
+                logWriter.write("Leaving eastThinning(); cycleCount = " + cycleCount + "; changeCount = " + changeCount + "\n");
+            } catch (IOException e) {
+                System.err.println("Error in eastThinning: " + e.getMessage());
             }
         }
+        
 
         // Counts the number of non-zero values within a 3x3 neighborhood, excluding aryOne[i][j]
         public int countNonZeroNeighbors(int[][] aryOne, int i, int j) {
@@ -250,17 +251,17 @@ public class FloresL_Project7_Main {
             return false; // No configuration matched
         }
 
-
         // Copies all values from sourceArr to destArr
         public void copyArys(int[][] destArr, int[][] sourceArr) {
-            for (int i = 0; i < destArr.length; i++) {
-                for (int j = 0; j < destArr[0].length; j++) {
-                    destArr[i][j] = sourceArr[i][j]; // Copy each element from sourceArr to destArr
+            for (int i = 0; i < sourceArr.length; i++) {
+                for (int j = 0; j < sourceArr[0].length; j++) {
+                    destArr[i][j] = sourceArr[i][j];
                 }
             }
         }
-
         
+
+
         public void loadImg(String inFile, int[][] zeroFramedAry, BufferedWriter outWriter) {
             try {
                 // STEP 0

@@ -147,6 +147,7 @@ public class FloresL_Project6_Main {
                 prettyPrintFile.write("After connected4 pass3\n");
                 prettyDotPrint(zeroFramedAry, prettyPrintFile);
                 prettyPrintFile.write("Equivalency Table after: Pass 3 (indexing starts from 1) \n");
+                printEQTable(newLabel, prettyPrintFile);
                 prettyPrintFile.write("Number of Connected Components: " + trueNumCC + "\n\n");
         
                 prettyPrintFile.flush();
