@@ -334,6 +334,25 @@ public class FloresL_Project7_Main {
                 System.err.println("Error in prettyDotPrint: " + e.getMessage());
             }
         }
+
+        public void prettyPrint(int[][] inAry, BufferedWriter prettyFile) {
+            try {
+                for (int i = 1; i < inAry.length - 1; i++) {
+                    for (int j = 1; j < inAry[0].length - 1; j++) {
+                        if (inAry[i][j] == 0) {
+                            prettyFile.write("   ");  // ' ' and a fixed width of 2 for alignment
+                        } else {
+                            prettyFile.write(String.format("%-3d", inAry[i][j]));  // Pad numbers to width of 2
+                        }
+                    }
+                    prettyFile.newLine();
+                }
+                prettyFile.newLine();
+                prettyFile.flush();
+            } catch (IOException e) {
+                System.err.println("Error in prettyDotPrint: " + e.getMessage());
+            }
+        }
     }//end-class-Thinning
 
     public static void main(String[] args) {
@@ -393,7 +412,7 @@ public class FloresL_Project7_Main {
 
             // Step 7: 
             outWriter.write("In main(), the final skeleton, changeCount = " + thinning.changeCount + "; cycleCount = " + thinning.cycleCount + "\n");
-            thinning.prettyDotPrint(thinning.aryOne, outWriter); 
+            thinning.prettyPrint(thinning.aryOne, outWriter); 
             
             // Step 8 
             long endTime = System.nanoTime();
