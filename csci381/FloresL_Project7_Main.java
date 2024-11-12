@@ -218,38 +218,62 @@ public class FloresL_Project7_Main {
         // Determine if a given 3x3 neighborhood around a pixel matches on of the six predefined patterns
         // match = true; match with at least one of the six congifurations; Current pixel is a connector pixel and cannot be removed 
         // match = false; no match; this pixel is not critical and can be removed 
-        public boolean checkConnector(int[][] aryOne, int i, int j) {
-            // Define the six configurations as 3x3 matrices
-            int[][][] configurations = {
-                {{0, 1, 0}, {1, 1, 1}, {0, 0, 0}}, // Configuration 1
-                {{0, 0, 0}, {1, 1, 1}, {0, 1, 0}}, // Configuration 2
-                {{1, 0, 0}, {1, 1, 0}, {0, 1, 0}}, // Configuration 3
-                {{0, 1, 0}, {1, 1, 0}, {1, 0, 0}}, // Configuration 4
-                {{0, 1, 0}, {0, 1, 1}, {0, 0, 1}}, // Configuration 5
-                {{0, 0, 1}, {0, 1, 1}, {0, 1, 0}}  // Configuration 6
-            };
-        
-            // Check if any configuration matches the 3x3 neighborhood around (i, j)
-            for (int k = 0; k < 6; k++) { // Iterate over each configuration
-                boolean match = true;
-                for (int x = 0; x < 3; x++) { // Iterate over rows of the 3x3 neighborhood
-                    for (int y = 0; y < 3; y++) { // Iterate over columns of the 3x3 neighborhood
-                        // Compute the actual coordinates in aryOne based on (i, j) as the center
-                        int row = i + x - 1;
-                        int col = j + y - 1;
-        
-                        // Skip checking positions marked as 'x' (can be represented by -1 if necessary)
-                        if (configurations[k][x][y] != -1 && configurations[k][x][y] != aryOne[row][col]) {
-                            match = false;
-                            break;
-                        }
-                    }
-                    if (!match) break;
+        public boolean checkConnector(int[][] ary, int i, int j) {
+            int[][] neighborhood = new int[3][3];
+
+             // Extract 3x3 neighborhood centered at (i, j)
+            for (int x = 0; x < 3; x++) {
+                for (int y = 0; y < 3; y++) {
+                    neighborhood[x][y] = ary[i - 1 + x][j - 1 + y];
                 }
-                if (match) return true; // Return true if any configuration matches
             }
-            return false; // No configuration matched
+        
+            // Configuration checks using the neighborhood array 
+            /**
+            x 0 x
+            x x x
+            x 0 x
+             */
+            if (neighborhood[0][1] == 0 && neighborhood[2][1] == 0) return true;
+            
+            /*
+            x x x
+            0 x 0
+            x x x
+            */
+            if (neighborhood[1][0] == 0 && neighborhood[1][2] == 0) return true;
+            
+            /*
+            1 0 x
+            0 x x
+            x x x
+             */
+            if (neighborhood[0][0] == 1 && neighborhood[0][1] == 0 && neighborhood[1][0] == 0) return true;
+            
+            /**
+            x 0 1
+            x x 0
+            x x x
+             */
+            if (neighborhood[0][1] == 0 && neighborhood[0][2] == 1 && neighborhood[1][2] == 0) return true;
+            
+            /*
+            x x x
+            0 x x
+            1 0 x
+             */
+            if (neighborhood[1][0] == 0 && neighborhood[2][0] == 1 && neighborhood[2][1] == 0) return true;
+            
+            /**
+            x x x
+            x x 0
+            x 0 1
+             */
+            if (neighborhood[2][1] == 0 && neighborhood[2][2] == 1 && neighborhood[1][2] == 0) return true;
+        
+            return false;
         }
+        
 
         // Copies all values from sourceArr to destArr
         public void copyArys(int[][] destArr, int[][] sourceArr) {
