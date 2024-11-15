@@ -107,11 +107,11 @@ def nb(train_data_path, test_data_path):
 ## Driver Code 
 
 # Train and Test File Paths
-train_filepath = "./movie-review-small-data/train"
-test_filepath = "./movie-review-small-data/test"
+train_filepath = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/train"
+test_filepath = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/test"
 # Classes to predict will be used for labels
-class1_folder_path = "./movie-review-small-data/test/action"
-class2_folder_path = "./movie-review-small-data/test/comedy"
+class1_folder_path = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/test/pos"
+class2_folder_path = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/test/neg"
 # Output Files
 actual_labels = "./labels.txt"
 prediction_file = "./predictions.txt"
