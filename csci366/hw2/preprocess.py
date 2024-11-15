@@ -1,14 +1,16 @@
 import os
 import re
+import time
+
 
 def preprocess(data_path):
     # Initialize a dictionary to store word frequencies {word : count}
-    print("Processing files in:", data_path)
+    print("Preprocessing files in:", data_path)
+    start_time = time.time() # record time
     bow_dict = {}
 
     # Traverse through all files in the given directory and its subdirectories
     for root, _, files in os.walk(data_path):
-        print()
         for file in files:
             # Construct the file path
             file_path = os.path.join(root, file)
@@ -26,4 +28,7 @@ def preprocess(data_path):
                 else:
                     bow_dict[word] = 1
 
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"preprocessing() executed in {elapsed_time:.4f} seconds")
     return bow_dict

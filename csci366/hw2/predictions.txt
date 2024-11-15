@@ -1,0 +1,7 @@
+Making predictions on the files
+--Action
+1              0.00010070
+1              0.00000130
+--Comedy
+0              0.00000170
+1              0.00000130
