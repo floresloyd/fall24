@@ -3,12 +3,14 @@ import time
 from preprocess import preprocess
 from methods import compute_prior_probabilities, compute_conditional_probabilities_with_add1, validate_predictions, get_validation_labels
 
+
+
 def nb(train_data_path, test_data_path):
     print("Entering Naive Bayes ... ")
     start_time = time.time()  # record time
 
-    # Extract and sort the subdirectories dynamically for consistent ordering
-    subdirectories = sorted([d for d in os.listdir(train_data_path) if os.path.isdir(os.path.join(train_data_path, d))])
+    # Extract the subdirectories dynamically
+    subdirectories = [d for d in os.listdir(train_data_path) if os.path.isdir(os.path.join(train_data_path, d))]
     
     if len(subdirectories) != 2:
         print("Expected exactly 2 subdirectories within the train_data_path.")
@@ -26,36 +28,32 @@ def nb(train_data_path, test_data_path):
     # Getting BOWs (Bag of Words)
     print("\nGenerating Bag of Words for each class...")
     class1_bow = preprocess(class1_path)
+    print(f"{class1_name.capitalize()} BOW: {class1_bow}")
 
     print()
     class2_bow = preprocess(class2_path)
-    # print(f"{class2_name.capitalize()} BOW: {class2_bow}")
+    print(f"{class2_name.capitalize()} BOW: {class2_bow}")
     print()
-
-    # Print mapping for clarity
-    print(f"Class Mapping:\n1 -> {class1_name}\n0 -> {class2_name}")
 
     # Getting conditional probabilities
     print("\nComputing Conditional Probabilities with Add-1 Smoothing...")
     class1_probs, class1_bowsize, class2_probs, class2_bowsize, vocabulary_size = compute_conditional_probabilities_with_add1(class1_bow, class2_bow)
 
     print()
-    print(f"Size of Bag of Word Features for {class1_name.capitalize()}: {class1_bowsize}")
-    print(f"Size of Bag of Word Features for {class2_name.capitalize()}: {class2_bowsize}")
-    print(f"Vocabulary Size: {vocabulary_size}")
+    print(f"BOW1size: {class1_bowsize} BOW2size: {class2_bowsize} VOCAB SIZE: {vocabulary_size}")
 
     # Creating/Clearing predictions.txt
     with open("predictions.txt", "w") as output_file:
         output_file.write("Making predictions on the files\n")
     
-    # Predicting with sorted inputs
-    for folder in sorted(os.listdir(test_data_path)):
+    # Predicting
+    for folder in os.listdir(test_data_path):
         folder_path = os.path.join(test_data_path, folder)
         if os.path.isdir(folder_path):
             with open("predictions.txt", "a") as output_file:
                 output_file.write(f"--{folder.capitalize()}\n")
 
-            for file_name in sorted(os.listdir(folder_path)):
+            for file_name in os.listdir(folder_path):
                 file_path = os.path.join(folder_path, file_name)
                 if os.path.isfile(file_path):
                     with open(file_path, 'r', encoding='utf-8') as file:
@@ -66,19 +64,26 @@ def nb(train_data_path, test_data_path):
 
                     # Calculate probabilities for class 1
                     for token in tokens:
-                        class1_prob *= class1_probs.get(token, 1 / (class1_bowsize + vocabulary_size))
+                        if token in class1_probs:
+                            class1_prob *= class1_probs[token]
+                        else:
+                            class1_prob *= 1 / (class1_bowsize + vocabulary_size)
 
                     # Calculate probabilities for class 2
                     for token in tokens:
-                        class2_prob *= class2_probs.get(token, 1 / (class2_bowsize + vocabulary_size))
+                        if token in class2_probs:
+                            class2_prob *= class2_probs[token]
+                        else:
+                            class2_prob *= 1 / (class2_bowsize + vocabulary_size)
 
                     # Make prediction (1 for class1, 0 for class2)
                     predicted_label = 1 if class1_prob > class2_prob else 0
                     feature_probs = max(class1_prob, class2_prob)  # Use the max probability for display
 
-                    # Write to predictions file with the filename as the third column
+                    # Write to predictions file
                     with open("predictions.txt", "a") as output_file:
-                        output_file.write(f"{predicted_label}              {feature_probs:.8f}              {file_name}\n")
+                        output_file.write(f"{predicted_label}              {feature_probs:.8f}\n")
+
     # Creating parameters.txt file to save model parameters
     with open("parameters.txt", "w", encoding='utf-8') as param_file:
         param_file.write(f"{class1_name.capitalize()}\n")
@@ -96,33 +101,13 @@ def nb(train_data_path, test_data_path):
     print(f"NB() executed in {elapsed_time:.4f} seconds")
 
 
-# ###############  TEST FILES  ####################################
-# train_filepath = "./movie-review-small-data/train"
-# test_filepath = "./movie-review-small-data/test"
-# class2_folder_path = "./movie-review-small-data/test/comedy"
-# class1_folder_path = "./movie-review-small-data/test/action"
-# actual_labels = "./labels.txt"
-# prediction_file = "./predictions.txt"
-# output_file = "./labels.txt"
 
-# # Train and Predict NB
-# nb(train_filepath, test_filepath)
-# # Get Labels
-# get_validation_labels(class1_folder_path, class2_folder_path, output_file)
-# #Validate
-# print()
-# validate_predictions(actual_labels, prediction_file)
-
-
-############### ACTUAL FILES #######################################
-## Driver Code 
-
-# Train and Test File Paths
-train_filepath = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/train"
-test_filepath = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/test"
+###############  TEST FILES  ####################################
+train_filepath = "./movie-review-small-data/train"
+test_filepath = "./movie-review-small-data/test"
 # Classes to predict will be used for labels
-class2_folder_path = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/test/pos"
-class1_folder_path = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/test/neg"
+class2_folder_path = "./movie-review-small-data/tesT/comedy"
+class1_folder_path = "./movie-review-small-data/test/action"
 # Output Files
 actual_labels = "./labels.txt"
 prediction_file = "./predictions.txt"
@@ -135,3 +120,32 @@ get_validation_labels(class1_folder_path, class2_folder_path, output_file)
 #Validate
 print()
 validate_predictions(actual_labels, prediction_file)
+
+
+
+
+
+
+
+
+# ############### ACTUAL FILES #######################################
+# ## Driver Code 
+
+# # Train and Test File Paths
+# train_filepath = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/train"
+# test_filepath = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/test"
+# # Classes to predict will be used for labels
+# class2_folder_path = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/test/pos"
+# class1_folder_path = "../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/test/neg"
+# # Output Files
+# actual_labels = "./labels.txt"
+# prediction_file = "./predictions.txt"
+# output_file = "./labels.txt"
+
+# # Train and Predict NB
+# nb(train_filepath, test_filepath)
+# # Get Labels
+# get_validation_labels(class1_folder_path, class2_folder_path, output_file)
+# #Validate
+# print()
+# validate_predictions(actual_labels, prediction_file)

@@ -1,0 +1,65 @@
+Entering Naive Bayes ... 
+
+Computing Prior Probabilities...
+Computing Prior Probabilities for ./movie-review-small-data/train ...
+compute_prior_probabilities() executed in 0.0010 seconds
+Prior Probabilities: action 0.6, comedy 0.4
+
+Generating Bag of Words for each class...
+Preprocessing files in: ./movie-review-small-data/train\action
+preprocessing() executed in 0.0010 seconds
+
+Preprocessing files in: ./movie-review-small-data/train\comedy
+preprocessing() executed in 0.0000 seconds
+
+Class Mapping:
+1 -> action
+0 -> comedy
+
+Computing Conditional Probabilities with Add-1 Smoothing...
+Computing conditional probabilities and smoothing ...
+compute_conditional_probabilities_with_add1() executed in 0.0000 seconds
+
+Size of Bag of Word Features for Action: 11
+Size of Bag of Word Features for Comedy: 9
+Vocabulary Size: 20
+NB() executed in 0.0060 seconds
+get_validation_labels() executed in 0.0000 seconds
+
+Validation Completed: 3/4 correct predictions.
+Accuracy: 75.00%
+validate_predictions() in 0.0020 seconds
+
+usflo@desktop MINGW64 ~/OneDrive/desktop/fall24/csci366/hw2 (main)
+$ python -u "c:\Users\usflo\OneDrive\desktop\fall24\csci366\hw2\NB.py"
+Entering Naive Bayes ... 
+
+Computing Prior Probabilities...
+Computing Prior Probabilities for ../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/train ...
+compute_prior_probabilities() executed in 0.0210 seconds
+Prior Probabilities: neg 0.5, pos 0.5
+
+Generating Bag of Words for each class...
+Preprocessing files in: ../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/train\neg
+preprocessing() executed in 2.4710 seconds
+
+Preprocessing files in: ../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/train\pos
+preprocessing() executed in 2.5089 seconds
+
+Class Mapping:
+1 -> neg
+0 -> pos
+
+Computing Conditional Probabilities with Add-1 Smoothing...
+Computing conditional probabilities and smoothing ...
+compute_conditional_probabilities_with_add1() executed in 0.0177 seconds
+
+Size of Bag of Word Features for Neg: 2996321
+Size of Bag of Word Features for Pos: 3060552
+Vocabulary Size: 6056873
+NB() executed in 14.6306 seconds
+get_validation_labels() executed in 0.4812 seconds
+
+Validation Completed: 13453/25000 correct predictions.
+Accuracy: 53.81%
+validate_predictions() in 0.0340 seconds
