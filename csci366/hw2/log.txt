@@ -1,65 +1,54 @@
-Entering Naive Bayes ... 
+\textbf{Given the five movie reviews:}
 
-Computing Prior Probabilities...
-Computing Prior Probabilities for ./movie-review-small-data/train ...
-compute_prior_probabilities() executed in 0.0010 seconds
-Prior Probabilities: action 0.6, comedy 0.4
+\begin{center}
+\begin{tabular}{|l|l|}
+    \hline
+    \textbf{Review} & \textbf{Category} \\ \hline
+    Fun, Couple, Love, Love & Comedy \\ \hline
+    Fast, Furious, Shoot & Action \\ \hline
+    Couple, Fly, Fast, Fun, Fun & Comedy \\ \hline
+    Furious, Shoot, Shoot, Fun &  Action \\ \hline
+    Fly, Fast, Shoot, Love &  Action \\ \hline
+\end{tabular}
+\end{center}
 
-Generating Bag of Words for each class...
-Preprocessing files in: ./movie-review-small-data/train\action
-preprocessing() executed in 0.0010 seconds
+\textbf{The Prior Probabilities are:} \\
+\begin{center}
+Action = $\frac{2}{5}$ or 60\%, Comedy = $\frac{2}{5}$ or 60\%
+\end{center}
 
-Preprocessing files in: ./movie-review-small-data/train\comedy
-preprocessing() executed in 0.0000 seconds
+\\ \\
+\textbf{And the Bag-of-Words features for the two classes are:}
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        BoW for Action Film Reviews & 
+        BoW for Comedy Film Reviews \\
+        \hline
+        ``fast''    : 2  & ``fast''    : 2  \\
+        ``furious'' : 2  & ``furious'' : 2  \\
+        ``shoot''   : 4  & ``shoot''   : 4  \\
+        ``fun''     : 1  & ``fun''     : 1  \\
+        ``fly''     : 1  & ``fly''     : 1  \\
+        ``love''    : 1  & ``love''    : 1  \\
+        \hline
+    \end{tabular}
+\end{center}
 
-Class Mapping:
-1 -> action
-0 -> comedy
+\newline 
 
-Computing Conditional Probabilities with Add-1 Smoothing...
-Computing conditional probabilities and smoothing ...
-compute_conditional_probabilities_with_add1() executed in 0.0000 seconds
+Action has a total of Eleven tokens and Comedy has a total of 9 tokens. In total our vocabulary or \textbf{V} = 20. 
 
-Size of Bag of Word Features for Action: 11
-Size of Bag of Word Features for Comedy: 9
-Vocabulary Size: 20
-NB() executed in 0.0060 seconds
-get_validation_labels() executed in 0.0000 seconds
+The task is to predict what review is the review: \textbf{"fast, couple, shoot, fly"}. To do this we compute the probability of the string to be of both classes and get the higher probability. 
 
-Validation Completed: 3/4 correct predictions.
-Accuracy: 75.00%
-validate_predictions() in 0.0020 seconds
-
-usflo@desktop MINGW64 ~/OneDrive/desktop/fall24/csci366/hw2 (main)
-$ python -u "c:\Users\usflo\OneDrive\desktop\fall24\csci366\hw2\NB.py"
-Entering Naive Bayes ... 
-
-Computing Prior Probabilities...
-Computing Prior Probabilities for ../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/train ...
-compute_prior_probabilities() executed in 0.0210 seconds
-Prior Probabilities: neg 0.5, pos 0.5
-
-Generating Bag of Words for each class...
-Preprocessing files in: ../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/train\neg
-preprocessing() executed in 2.4710 seconds
-
-Preprocessing files in: ../../../../../Downloads/nlp-hw2/movie-review-HW2/aclImdb/train\pos
-preprocessing() executed in 2.5089 seconds
-
-Class Mapping:
-1 -> neg
-0 -> pos
-
-Computing Conditional Probabilities with Add-1 Smoothing...
-Computing conditional probabilities and smoothing ...
-compute_conditional_probabilities_with_add1() executed in 0.0177 seconds
-
-Size of Bag of Word Features for Neg: 2996321
-Size of Bag of Word Features for Pos: 3060552
-Vocabulary Size: 6056873
-NB() executed in 14.6306 seconds
-get_validation_labels() executed in 0.4812 seconds
-
-Validation Completed: 13453/25000 correct predictions.
-Accuracy: 53.81%
-validate_predictions() in 0.0340 seconds
+\\ 
+\begin{center}
+    \begin{equation*}
+        P(\text{fast, couple, shoot, fly}) = \arg\min \left(
+        \begin{aligned}
+            &P(\text{Action}) \times P(\text{fast} \mid \text{Action}) \times P(\text{couple} \mid \text{Action}) \times P(\text{shoot} \mid \text{Action}) \times P(\text{fly} \mid \text{Action}), \\
+            &P(\text{Comedy}) \times P(\text{fast} \mid \text{Comedy}) \times P(\text{couple} \mid \text{Comedy}) \times P(\text{shoot} \mid \text{Comedy}) \times P(\text{fly} \mid \text{Comedy})
+        \end{aligned}
+        \right)
+    \end{equation*}
+\end{center}

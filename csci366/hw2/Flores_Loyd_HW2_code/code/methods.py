@@ -55,18 +55,12 @@ def compute_conditional_probabilities_with_add1(bow1, bow2):
     # Step 2: Obtain number of tokens by extracting total number of tokens within each bag to obtain vocabulary size
     bow1_size = sum(bow1.values())
     bow2_size = sum(bow2.values())
-    unique_tokens = set(bow1.keys()).union(set(bow2.keys()))
-    vocabulary_size = len(unique_tokens)
+    vocabulary_size = bow1_size + bow2_size
 
     # Step 3: Manually iterate through all the values in each bag and performing this computation to obtain conditional probability
     # prob(token) = count(w_i) + 1 / count(w | c) + V 
-    conditional_probabilities1 = {}
-    for token, count in bow1.items():
-        conditional_probabilities1[token] = (count + 1) / (bow1_size + vocabulary_size)
-
-    conditional_probabilities2 = {}
-    for token, count in bow2.items():
-        conditional_probabilities2[token] = (count + 1) / (bow2_size + vocabulary_size)
+    conditional_probabilities1 = {token: (count + 1) / (bow1_size + vocabulary_size) for token, count in bow1.items()}
+    conditional_probabilities2 = {token: (count + 1) / (bow2_size + vocabulary_size) for token, count in bow2.items()}
 
     # Step 4: Log execution time and return prior probabilities
     elapsed_time = time.time() - start_time
@@ -92,13 +86,13 @@ def get_validation_labels(class1_folder_path, class2_folder_path, output_file):
         file.write(f"--{os.path.basename(class1_folder_path).capitalize()}\n")
         for file_name in sorted(os.listdir(class1_folder_path)):
             if os.path.isfile(os.path.join(class1_folder_path, file_name)):
-                file.write(f"0 {file_name}\n")  # No probability, just label and file name
+                file.write(f"1 {file_name}\n")  # No probability, just label and file name
 
         # Step 4: obtain labels for class 2 
         file.write(f"--{os.path.basename(class2_folder_path).capitalize()}\n")
         for file_name in sorted(os.listdir(class2_folder_path)):
             if os.path.isfile(os.path.join(class2_folder_path, file_name)):
-                file.write(f"1 {file_name}\n")  # No probability, just label and file name
+                file.write(f"0 {file_name}\n")  # No probability, just label and file name
 
     # Step 3: Log execution time and output labels on output.txt
     elapsed_time = time.time() - start_time
