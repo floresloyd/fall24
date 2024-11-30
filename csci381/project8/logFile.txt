@@ -1,0 +1,178 @@
+Below is the loaded CCAry of connected component label 1
+CC 1: label=1, pixels=119, minRow=2, minCol=9, maxRow=18, maxCol=21
+Entering getChainCode method
+Entering findNextP method
+In findNextP: index=5, iRow=4, jCol=14, chainDir=5, found=true, CCAry[4][14]=1
+lastQ=2, currentP=(4,14), nextP=(4,14)
+Entering findNextP method
+In findNextP: index=5, iRow=5, jCol=13, chainDir=5, found=true, CCAry[5][13]=1
+lastQ=2, currentP=(5,13), nextP=(5,13)
+Entering findNextP method
+In findNextP: index=5, iRow=6, jCol=12, chainDir=5, found=true, CCAry[6][12]=1
+lastQ=2, currentP=(6,12), nextP=(6,12)
+Entering findNextP method
+In findNextP: index=5, iRow=7, jCol=11, chainDir=5, found=true, CCAry[7][11]=1
+lastQ=2, currentP=(7,11), nextP=(7,11)
+Entering findNextP method
+In findNextP: index=5, iRow=8, jCol=10, chainDir=5, found=true, CCAry[8][10]=1
+lastQ=2, currentP=(8,10), nextP=(8,10)
+Entering findNextP method
+In findNextP: index=6, iRow=9, jCol=10, chainDir=6, found=true, CCAry[9][10]=1
+lastQ=4, currentP=(9,10), nextP=(9,10)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=11, chainDir=0, found=true, CCAry[9][11]=1
+lastQ=6, currentP=(9,11), nextP=(9,11)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=12, chainDir=0, found=true, CCAry[9][12]=1
+lastQ=6, currentP=(9,12), nextP=(9,12)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=13, chainDir=0, found=true, CCAry[9][13]=1
+lastQ=6, currentP=(9,13), nextP=(9,13)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=14, chainDir=0, found=true, CCAry[9][14]=1
+lastQ=6, currentP=(9,14), nextP=(9,14)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=15, chainDir=0, found=true, CCAry[9][15]=1
+lastQ=6, currentP=(9,15), nextP=(9,15)
+Entering findNextP method
+In findNextP: index=7, iRow=10, jCol=16, chainDir=7, found=true, CCAry[10][16]=1
+lastQ=4, currentP=(10,16), nextP=(10,16)
+Entering findNextP method
+In findNextP: index=6, iRow=11, jCol=16, chainDir=6, found=true, CCAry[11][16]=1
+lastQ=4, currentP=(11,16), nextP=(11,16)
+Entering findNextP method
+In findNextP: index=6, iRow=12, jCol=16, chainDir=6, found=true, CCAry[12][16]=1
+lastQ=4, currentP=(12,16), nextP=(12,16)
+Entering findNextP method
+In findNextP: index=5, iRow=13, jCol=15, chainDir=5, found=true, CCAry[13][15]=1
+lastQ=2, currentP=(13,15), nextP=(13,15)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=14, chainDir=4, found=true, CCAry[13][14]=1
+lastQ=2, currentP=(13,14), nextP=(13,14)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=13, chainDir=4, found=true, CCAry[13][13]=1
+lastQ=2, currentP=(13,13), nextP=(13,13)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=12, chainDir=4, found=true, CCAry[13][12]=1
+lastQ=2, currentP=(13,12), nextP=(13,12)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=11, chainDir=4, found=true, CCAry[13][11]=1
+lastQ=2, currentP=(13,11), nextP=(13,11)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=10, chainDir=4, found=true, CCAry[13][10]=1
+lastQ=2, currentP=(13,10), nextP=(13,10)
+Entering findNextP method
+In findNextP: index=6, iRow=14, jCol=10, chainDir=6, found=true, CCAry[14][10]=1
+lastQ=4, currentP=(14,10), nextP=(14,10)
+Entering findNextP method
+In findNextP: index=7, iRow=15, jCol=11, chainDir=7, found=true, CCAry[15][11]=1
+lastQ=4, currentP=(15,11), nextP=(15,11)
+Entering findNextP method
+In findNextP: index=0, iRow=15, jCol=12, chainDir=0, found=true, CCAry[15][12]=1
+lastQ=6, currentP=(15,12), nextP=(15,12)
+Entering findNextP method
+In findNextP: index=7, iRow=16, jCol=13, chainDir=7, found=true, CCAry[16][13]=1
+lastQ=4, currentP=(16,13), nextP=(16,13)
+Entering findNextP method
+In findNextP: index=7, iRow=17, jCol=14, chainDir=7, found=true, CCAry[17][14]=1
+lastQ=4, currentP=(17,14), nextP=(17,14)
+Entering findNextP method
+In findNextP: index=7, iRow=18, jCol=15, chainDir=7, found=true, CCAry[18][15]=1
+lastQ=4, currentP=(18,15), nextP=(18,15)
+Entering findNextP method
+In findNextP: index=6, iRow=19, jCol=15, chainDir=6, found=true, CCAry[19][15]=1
+lastQ=4, currentP=(19,15), nextP=(19,15)
+Entering findNextP method
+In findNextP: index=0, iRow=19, jCol=16, chainDir=0, found=true, CCAry[19][16]=1
+lastQ=6, currentP=(19,16), nextP=(19,16)
+Entering findNextP method
+In findNextP: index=0, iRow=19, jCol=17, chainDir=0, found=true, CCAry[19][17]=1
+lastQ=6, currentP=(19,17), nextP=(19,17)
+Entering findNextP method
+In findNextP: index=2, iRow=18, jCol=17, chainDir=2, found=true, CCAry[18][17]=1
+lastQ=0, currentP=(18,17), nextP=(18,17)
+Entering findNextP method
+In findNextP: index=1, iRow=17, jCol=18, chainDir=1, found=true, CCAry[17][18]=1
+lastQ=6, currentP=(17,18), nextP=(17,18)
+Entering findNextP method
+In findNextP: index=1, iRow=16, jCol=19, chainDir=1, found=true, CCAry[16][19]=1
+lastQ=6, currentP=(16,19), nextP=(16,19)
+Entering findNextP method
+In findNextP: index=1, iRow=15, jCol=20, chainDir=1, found=true, CCAry[15][20]=1
+lastQ=6, currentP=(15,20), nextP=(15,20)
+Entering findNextP method
+In findNextP: index=0, iRow=15, jCol=21, chainDir=0, found=true, CCAry[15][21]=1
+lastQ=6, currentP=(15,21), nextP=(15,21)
+Entering findNextP method
+In findNextP: index=1, iRow=14, jCol=22, chainDir=1, found=true, CCAry[14][22]=1
+lastQ=6, currentP=(14,22), nextP=(14,22)
+Entering findNextP method
+In findNextP: index=2, iRow=13, jCol=22, chainDir=2, found=true, CCAry[13][22]=1
+lastQ=0, currentP=(13,22), nextP=(13,22)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=21, chainDir=4, found=true, CCAry[13][21]=1
+lastQ=2, currentP=(13,21), nextP=(13,21)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=20, chainDir=4, found=true, CCAry[13][20]=1
+lastQ=2, currentP=(13,20), nextP=(13,20)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=19, chainDir=4, found=true, CCAry[13][19]=1
+lastQ=2, currentP=(13,19), nextP=(13,19)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=18, chainDir=4, found=true, CCAry[13][18]=1
+lastQ=2, currentP=(13,18), nextP=(13,18)
+Entering findNextP method
+In findNextP: index=4, iRow=13, jCol=17, chainDir=4, found=true, CCAry[13][17]=1
+lastQ=2, currentP=(13,17), nextP=(13,17)
+Entering findNextP method
+In findNextP: index=3, iRow=12, jCol=16, chainDir=3, found=true, CCAry[12][16]=1
+lastQ=0, currentP=(12,16), nextP=(12,16)
+Entering findNextP method
+In findNextP: index=2, iRow=11, jCol=16, chainDir=2, found=true, CCAry[11][16]=1
+lastQ=0, currentP=(11,16), nextP=(11,16)
+Entering findNextP method
+In findNextP: index=2, iRow=10, jCol=16, chainDir=2, found=true, CCAry[10][16]=1
+lastQ=0, currentP=(10,16), nextP=(10,16)
+Entering findNextP method
+In findNextP: index=1, iRow=9, jCol=17, chainDir=1, found=true, CCAry[9][17]=1
+lastQ=6, currentP=(9,17), nextP=(9,17)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=18, chainDir=0, found=true, CCAry[9][18]=1
+lastQ=6, currentP=(9,18), nextP=(9,18)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=19, chainDir=0, found=true, CCAry[9][19]=1
+lastQ=6, currentP=(9,19), nextP=(9,19)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=20, chainDir=0, found=true, CCAry[9][20]=1
+lastQ=6, currentP=(9,20), nextP=(9,20)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=21, chainDir=0, found=true, CCAry[9][21]=1
+lastQ=6, currentP=(9,21), nextP=(9,21)
+Entering findNextP method
+In findNextP: index=0, iRow=9, jCol=22, chainDir=0, found=true, CCAry[9][22]=1
+lastQ=6, currentP=(9,22), nextP=(9,22)
+Entering findNextP method
+In findNextP: index=2, iRow=8, jCol=22, chainDir=2, found=true, CCAry[8][22]=1
+lastQ=0, currentP=(8,22), nextP=(8,22)
+Entering findNextP method
+In findNextP: index=3, iRow=7, jCol=21, chainDir=3, found=true, CCAry[7][21]=1
+lastQ=0, currentP=(7,21), nextP=(7,21)
+Entering findNextP method
+In findNextP: index=3, iRow=6, jCol=20, chainDir=3, found=true, CCAry[6][20]=1
+lastQ=0, currentP=(6,20), nextP=(6,20)
+Entering findNextP method
+In findNextP: index=3, iRow=5, jCol=19, chainDir=3, found=true, CCAry[5][19]=1
+lastQ=0, currentP=(5,19), nextP=(5,19)
+Entering findNextP method
+In findNextP: index=3, iRow=4, jCol=18, chainDir=3, found=true, CCAry[4][18]=1
+lastQ=0, currentP=(4,18), nextP=(4,18)
+Entering findNextP method
+In findNextP: index=3, iRow=3, jCol=17, chainDir=3, found=true, CCAry[3][17]=1
+lastQ=0, currentP=(3,17), nextP=(3,17)
+Entering findNextP method
+In findNextP: index=4, iRow=3, jCol=16, chainDir=4, found=true, CCAry[3][16]=1
+lastQ=2, currentP=(3,16), nextP=(3,16)
+Entering findNextP method
+In findNextP: index=4, iRow=3, jCol=15, chainDir=4, found=true, CCAry[3][15]=1
+lastQ=2, currentP=(3,15), nextP=(3,15)
+Leaving getChainCode method
