@@ -1,0 +1,7 @@
+*** Entering loadImage ***
+Header: 45 45 1 35
+*** Leaving loadImage() method ***
+*** Entering mirrorFraming() ***
+Mirror Framing With Corners Complete!
+*** Exiting mirrorFraming() ****** Entering Gradient Edge detector ***
+*** Leaving Gradient Edge detector ***

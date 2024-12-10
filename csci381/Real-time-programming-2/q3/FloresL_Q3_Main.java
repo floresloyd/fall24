@@ -1,11 +1,10 @@
-package project8;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FloresL_Project8_Main {
+public class FloresL_Q3_Main {
     class chainCode{
 
         // Represents a point in a 2d image
@@ -126,7 +125,8 @@ public class FloresL_Project8_Main {
         }//end-clearCCAry
 
 
-        public void getChainCode(CCproperty CC, int[][] CCAry, BufferedWriter chainCodeFile, BufferedWriter logFile) {
+
+        public void getChainCode(CCproperty CC, int[][] CCAry, BufferedWriter chainCodeFile, BufferedWriter logFile, BufferedWriter zeroBoundaryFile) {
             try {
                 logFile.write("Entering getChainCode method\n");
         
@@ -138,6 +138,12 @@ public class FloresL_Project8_Main {
                     for (int j = 1; j < CCAry[0].length - 1; j++) {
                         if (CCAry[i][j] == CC.label) { // Found starting point
                             chainCodeFile.write(i + " " + j + " " + CC.label + "\n");
+                            
+                            // Record the zero pixel before the start point
+                            // CHANGE #1 RECORD ALL ZERO POSITIONS 
+                            int lastZeroRow = i + coordOffset[lastQ].row;
+                            int lastZeroCol = j + coordOffset[lastQ].col;
+                            zeroBoundaryFile.write(lastZeroRow + " " + lastZeroCol + "\n");
         
                             startP.row = i;
                             startP.col = j;
@@ -147,7 +153,7 @@ public class FloresL_Project8_Main {
         
                             do {
                                 nextDir = (lastQ + 1) % 8; // Start from next direction
-                                PchainDir = findNextP(currentP, CCAry, CC, nextDir, logFile);
+                                PchainDir = findNextP(currentP, CCAry, CC, nextDir, logFile, zeroBoundaryFile);
         
                                 if (PchainDir == -1) {
                                     logFile.write("No further valid points found. Stopping chain code.\n");
@@ -166,12 +172,13 @@ public class FloresL_Project8_Main {
                                 lastQ = PchainDir == 0 ? zeroTable[7] : zeroTable[PchainDir - 1];
         
                                 logFile.write("lastQ=" + lastQ + ", currentP=(" + currentP.row + "," + currentP.col + "), " +
-                                              "nextP=(" + nextP.row + "," + nextP.col + ")\n");
+                                            "nextP=(" + nextP.row + "," + nextP.col + ")\n");
         
                             } while (!(currentP.row == startP.row && currentP.col == startP.col)); // Loop until we return to the start
         
                             chainCodeFile.write("\n");
                             chainCodeFile.flush();
+                            zeroBoundaryFile.flush();
                             logFile.write("Leaving getChainCode method\n");
                             return;
                         }
@@ -181,12 +188,10 @@ public class FloresL_Project8_Main {
             } catch (IOException e) {
                 System.err.println("Error in getChainCode: " + e.getMessage());
             }
-        }//end-getChainCode
-        
+        }
         
 
-
-        public int findNextP(Point currentP, int[][] CCAry, CCproperty CC, int lastQ, BufferedWriter logFile) {
+        public int findNextP(Point currentP, int[][] CCAry, CCproperty CC, int lastQ, BufferedWriter logFile, BufferedWriter zeroBoundaryFile) {
             try {
                 logFile.write("Entering findNextP method\n");
         
@@ -198,13 +203,18 @@ public class FloresL_Project8_Main {
                     int iRow = currentP.row + coordOffset[index].row;
                     int jCol = currentP.col + coordOffset[index].col;
         
-                    // Check bounds and valid neighbor
-                    if (iRow >= 0 && iRow < CCAry.length && jCol >= 0 && jCol < CCAry[0].length &&
-                        CCAry[iRow][jCol] == CC.label) {
-                        found = true;
-                        logFile.write("In findNextP: index=" + index + ", iRow=" + iRow + ", jCol=" + jCol +
-                                      ", chainDir=" + index + ", found=" + found + ", CCAry[" + iRow + "][" + jCol + "]=" + CCAry[iRow][jCol] + "\n");
-                        return index; // Return the valid direction
+                    // Check bounds
+                    if (iRow >= 0 && iRow < CCAry.length && jCol >= 0 && jCol < CCAry[0].length) {
+                        // Change 2: RECORD ON ZERO BOUNDARY FILE while looking for  next object pixel
+                        if (CCAry[iRow][jCol] == 0) {
+                            // Record zero pixel position
+                            zeroBoundaryFile.write(iRow + " " + jCol + "\n");
+                        } else if (CCAry[iRow][jCol] == CC.label) {
+                            found = true;
+                            logFile.write("In findNextP: index=" + index + ", iRow=" + iRow + ", jCol=" + jCol +
+                                        ", chainDir=" + index + ", found=" + found + ", CCAry[" + iRow + "][" + jCol + "]=" + CCAry[iRow][jCol] + "\n");
+                            return index; // Return the valid direction
+                        }
                     }
         
                     index = (index + 1) % 8; // Move to the next direction
@@ -219,7 +229,9 @@ public class FloresL_Project8_Main {
                 System.err.println("Error in findNextP: " + e.getMessage());
             }
             return -1; // Fallback in case of an error
-        }//end-findNextP
+        }
+    
+        
         
 
         //  isolates one connected component (CC) from the image
@@ -320,65 +332,63 @@ public class FloresL_Project8_Main {
             }
         }//end-prettyPrint
 
-        public void constructBoundary(int[][] boundaryAry, BufferedReader chainCodeFile) {
+        public void constructBoundary(int[][] boundaryAry, BufferedReader chainCodeFile, BufferedReader zeroBoundaryFile) {
             try {
                 String line;
                 Point currentP = null;
                 int label = -1;
         
-                // Read each line from the chainCodeFile
+                // First pass: Process chain code and construct boundary
                 while ((line = chainCodeFile.readLine()) != null) {
                     String[] tokens = line.trim().split("\\s+");
         
-                    // Identify headers dynamically
                     if (tokens.length == 4) {
-                        // It's a header: update image properties
+                        // Header
                         int numRows = Integer.parseInt(tokens[0]);
                         int numCols = Integer.parseInt(tokens[1]);
                         int minVal = Integer.parseInt(tokens[2]);
                         int maxVal = Integer.parseInt(tokens[3]);
-        
                         System.out.println("Processing header: " + numRows + " " + numCols + " " + minVal + " " + maxVal);
         
                     } else if (tokens.length == 3) {
-                        // It's the starting point of a connected component
+                        // Starting point
                         int startRow = Integer.parseInt(tokens[0]);
                         int startCol = Integer.parseInt(tokens[1]);
                         label = Integer.parseInt(tokens[2]);
         
                         currentP = new Point(startRow, startCol);
-                        boundaryAry[startRow][startCol] = label; // Mark the starting point
-        
+                        boundaryAry[startRow][startCol] = label;
                         System.out.println("Starting new component at: (" + startRow + ", " + startCol + ") with label " + label);
         
                     } else {
                         // Process chain directions
                         for (String dir : tokens) {
+                            if (dir.trim().isEmpty()) continue;
+                            
                             int chainDir = Integer.parseInt(dir);
-        
-                            // Validate chainDir
                             if (chainDir < 0 || chainDir >= coordOffset.length) {
                                 System.err.println("Invalid chainDir: " + chainDir);
-                                continue; // Skip invalid directions
+                                continue;
                             }
         
-                            // Update currentP based on chainDir
                             currentP.row += coordOffset[chainDir].row;
                             currentP.col += coordOffset[chainDir].col;
-        
-                            // Mark the boundary point
                             boundaryAry[currentP.row][currentP.col] = label;
                         }
                     }
                 }
-        
-                // Debugging: Print the reconstructed boundary
-                System.out.println("Reconstructed Boundary:");
-                for (int i = 1; i < boundaryAry.length - 1; i++) {
-                    for (int j = 1; j < boundaryAry[0].length - 1; j++) {
-                        System.out.print(boundaryAry[i][j] + " ");
+                
+                // CHANGE 3: Second pass: Mark zero pixels with numCC+1
+                zeroBoundaryFile.mark(100000); // Mark the start of file to allow reset
+                while ((line = zeroBoundaryFile.readLine()) != null) {
+                    String[] coords = line.trim().split("\\s+");
+                    if (coords.length == 2) {
+                        int row = Integer.parseInt(coords[0]);
+                        int col = Integer.parseInt(coords[1]);
+                        if (boundaryAry[row][col] == 0) { // Only mark if it's still zero
+                            boundaryAry[row][col] = numCC + 1;
+                        }
                     }
-                    System.out.println();
                 }
         
             } catch (IOException e) {
@@ -386,7 +396,7 @@ public class FloresL_Project8_Main {
             } catch (Exception e) {
                 System.err.println("Unexpected error: " + e.getMessage());
             }
-        }//end-constructBoundaryAry
+        }
         
         
 
@@ -395,9 +405,9 @@ public class FloresL_Project8_Main {
                 // Step 1: Write the image header
                 fileOut.write(numRows + " " + numCols + " " + minVal + " " + maxVal + "\n");
         
-                // Step 2: Write the pixel values within the frame
-                for (int i = 1; i < inAry.length - 1; i++) { // Skip the zero frame
-                    for (int j = 1; j < inAry[0].length - 1; j++) {
+                // Step 2: Write the pixel values including the frame
+                for (int i = 0; i < inAry.length; i++) { // Include the zero frame
+                    for (int j = 0; j < inAry[0].length; j++) {
                         fileOut.write(inAry[i][j] + " "); // Write pixel value followed by a space
                     }
                     fileOut.newLine(); // Move to the next line after each row
@@ -410,7 +420,7 @@ public class FloresL_Project8_Main {
                 System.err.println("Error in AryToFile: " + e.getMessage());
             }
         }//end-arryToFile
-
+        
     }//end-class-chainCode
 
     public static void main(String[] args) {
@@ -421,17 +431,18 @@ public class FloresL_Project8_Main {
         String chainCodeFile = args[3];
         String boundaryFile = args[4];
         String logFile = args[5];
+        String zeroBoundaryFile = args[6];
         
         int numRows;
         int numCols;
         int minVal;
         int maxVal;
-
+    
         int propRows;
         int propCols;
         int propMin;
         int propMax;
-
+    
         try {
             // Read Input Header for input img
             BufferedReader br = new BufferedReader(new FileReader(labelFile));
@@ -441,7 +452,7 @@ public class FloresL_Project8_Main {
             numCols = Integer.parseInt(inputHeader[1]);
             minVal = Integer.parseInt(inputHeader[2]);
             maxVal = Integer.parseInt(inputHeader[3]);
-            chainCode chainCode = new FloresL_Project8_Main().new chainCode(numRows, numCols, minVal, maxVal);
+            chainCode chainCode = new FloresL_Q3_Main().new chainCode(numRows, numCols, minVal, maxVal);
             
             // Read prop file
             BufferedReader prop_br = new BufferedReader(new FileReader(propFile));
@@ -452,12 +463,13 @@ public class FloresL_Project8_Main {
             propMax = Integer.parseInt(propInputHeader[3]);
             propInputHeader = prop_br.readLine().trim().split("\\s+");
             chainCode.numCC = Integer.parseInt(propInputHeader[0]);
-
+    
             // Instantiate Writer objects
             BufferedWriter outFileWriter = new BufferedWriter(new FileWriter(outFile));
             BufferedWriter chainCodeWriter = new BufferedWriter(new FileWriter(chainCodeFile));
             BufferedWriter boundaryWriter = new BufferedWriter(new FileWriter(boundaryFile));
             BufferedWriter logFileWriter = new BufferedWriter(new FileWriter(logFile));
+            BufferedWriter zeroBoundaryWriter = new BufferedWriter(new FileWriter(zeroBoundaryFile));
             
             chainCode.loadImg(labelFile, chainCode.imgAry);
             outFileWriter.write("Below is the loaded imgAry of input labelFile \n");
@@ -467,75 +479,79 @@ public class FloresL_Project8_Main {
             System.out.println("Label File Header: " + numRows + " " + numCols + " " + minVal + " " + maxVal);
             System.out.println("Prop File Header: " + propRows + " " + propCols + " " + propMin + " " + propMax);
             System.out.println("Number of Connected Components: " + chainCode.numCC);
-
-
+    
+            // Step 2: Read Connected Component Properties
+            for (int i = 0; i < chainCode.numCC; i++) {
+                // Read CC label
+                int label = Integer.parseInt(prop_br.readLine().trim());
+                // Read number of pixels
+                int numPixels = Integer.parseInt(prop_br.readLine().trim());
+                // Read upper-left corner coordinates (minRow, minCol)
+                String[] upperLeft = prop_br.readLine().trim().split("\\s+");
+                int minRow = Integer.parseInt(upperLeft[0]);
+                int minCol = Integer.parseInt(upperLeft[1]);
+                // Read lower-right corner coordinates (maxRow, maxCol)
+                String[] lowerRight = prop_br.readLine().trim().split("\\s+");
+                int maxRow = Integer.parseInt(lowerRight[0]);
+                int maxCol = Integer.parseInt(lowerRight[1]);
+    
+                // Create a CCproperty object and assign it to the chainCode object
+                chainCode.cc = new chainCode.CCproperty(label, numPixels, minRow, minCol, maxRow, maxCol);
+    
+                // Debugging output
+                logFileWriter.write("Below is the loaded CCAry of connected component label " + label + "\n"); 
+                logFileWriter.write("CC " + (i + 1) + ": label=" + label + ", pixels=" + numPixels +
+                        ", minRow=" + minRow + ", minCol=" + minCol + ", maxRow=" + maxRow + ", maxCol=" + maxCol + "\n");
+                
+                // Step 3 - Clear previous cc's data
+                chainCode.clearCCAry();
             
-        // Step 2: Read Connected Component Properties
-        for (int i = 0; i < chainCode.numCC; i++) {
-            // Read CC label
-            int label = Integer.parseInt(prop_br.readLine().trim());
-            // Read number of pixels
-            int numPixels = Integer.parseInt(prop_br.readLine().trim());
-            // Read upper-left corner coordinates (minRow, minCol)
-            String[] upperLeft = prop_br.readLine().trim().split("\\s+");
-            int minRow = Integer.parseInt(upperLeft[0]);
-            int minCol = Integer.parseInt(upperLeft[1]);
-            // Read lower-right corner coordinates (maxRow, maxCol)
-            String[] lowerRight = prop_br.readLine().trim().split("\\s+");
-            int maxRow = Integer.parseInt(lowerRight[0]);
-            int maxCol = Integer.parseInt(lowerRight[1]);
-
-            // Create a CCproperty object and assign it to the chainCode object
-            chainCode.cc = new chainCode.CCproperty(label, numPixels, minRow, minCol, maxRow, maxCol);
-
-            // Debugging output
-            logFileWriter.write("Below is the loaded CCAry of connected component label " + label + "\n"); 
-            logFileWriter.write("CC " + (i + 1) + ": label=" + label + ", pixels=" + numPixels +
-                    ", minRow=" + minRow + ", minCol=" + minCol + ", maxRow=" + maxRow + ", maxCol=" + maxCol + "\n");
-            
-            // Step 3 - Clear previous cc's data
-            chainCode.clearCCAry();
-        
-            // Step 4 - read next cc's data
-            chainCode.loadCCAry(label);
-            outFileWriter.write("Connected Component Label = " + label + "\n");
-            chainCode.prettyDotPrint(chainCode.CCary, outFileWriter);
-
-            // Step 5 
-            chainCode.getChainCode(chainCode.cc, chainCode.CCary, chainCodeWriter, logFileWriter);
-        }//end-processing
-
-        // Step 7
-        chainCodeWriter.flush();
-        chainCodeWriter.close();
-        // Step 8 
-        BufferedReader chainCodeReader = new BufferedReader(new FileReader(chainCodeFile));
-        // Step 9
-        chainCode.constructBoundary(chainCode.boundaryAry, chainCodeReader);
-        outFileWriter.write("** Below is the objects boundaries of the input label image. \n");
-        chainCode.prettyDotPrint(chainCode.boundaryAry, outFileWriter);
-        boundaryWriter.write("“** Below is the objects boundaries of the input label image. \n");
-        chainCode.aryToFile(chainCode.boundaryAry, boundaryWriter, numRows, numCols, minVal, maxVal);
-
-        // Step 10
-        logFileWriter.flush(); // Flush log data to file
-        br.close();
-        prop_br.close();
-        outFileWriter.close();
-        boundaryWriter.close();
-        logFileWriter.close();
+                // Step 4 - read next cc's data
+                chainCode.loadCCAry(label);
+                outFileWriter.write("Connected Component Label = " + label + "\n");
+                chainCode.prettyDotPrint(chainCode.CCary, outFileWriter);
+    
+                // Step 5 
+                chainCode.getChainCode(chainCode.cc, chainCode.CCary, chainCodeWriter, logFileWriter, zeroBoundaryWriter);
+            }//end-processing
+    
+            // Step 7
+            chainCodeWriter.flush();
+            chainCodeWriter.close();
+            zeroBoundaryWriter.flush();
+            zeroBoundaryWriter.close();
+    
+            // Step 8 
+            BufferedReader chainCodeReader = new BufferedReader(new FileReader(chainCodeFile));
+            BufferedReader zeroBoundaryReader = new BufferedReader(new FileReader(zeroBoundaryFile));
+    
+            // Step 9
+            chainCode.constructBoundary(chainCode.boundaryAry, chainCodeReader, zeroBoundaryReader);
+            outFileWriter.write("** Below is the objects boundaries of the input label image. \n");
+            chainCode.prettyDotPrint(chainCode.boundaryAry, outFileWriter);
+            boundaryWriter.write("** Below is the objects boundaries of the input label image. \n");
+            chainCode.aryToFile(chainCode.boundaryAry, boundaryWriter, numRows, numCols, minVal, maxVal);
+    
+            // Step 10
+            logFileWriter.flush(); // Flush log data to file
+            br.close();
+            prop_br.close();
+            outFileWriter.close();
+            boundaryWriter.close();
+            logFileWriter.close();
+            chainCodeReader.close();
+            zeroBoundaryReader.close();
+    
         } catch (IOException e){
             System.err.println("Error: " + e.getMessage());
         }
-
-
     }//end-main
 
 }//end-FloresL_Project8_Main
 
 /**
- COMPILE: javac FloresL_Project8_Main.java
- RUN    : java FloresL_Project8_Main.java img1CC.txt img1Property.txt outFile.txt chainCodeFile.txt boundaryFile.txt logFile.txt
+ COMPILE: javac FloresL_Q3_Main.java
+ RUN    : java FloresL_Q3_Main.java img1CC.txt img1Property.txt outFile.txt chainCodeFile.txt boundaryFile.txt logFile.txt zeroBoundaryFile.txt
 
  args[0] - image file with header // labelfile
  args[1] - connectedComponent properties with format 
@@ -543,6 +559,9 @@ public class FloresL_Project8_Main {
  args[3] - chainCodeFile
  args[4] - boundaryFile
  args[5] - logFile
+ args[6] - zeroBoundaryFile
+
+ //
 
 
  Prop File
@@ -555,3 +574,27 @@ public class FloresL_Project8_Main {
 18 21           -- r,c of lower right 
 
  */
+
+
+
+ /** 
+GOAL:
+
+modify chain code so that objects in the boundary file will be surrounded by marked zero-pixels  and output it to the zeroBoundaryFile.txt
+should look like this 
+
+2 15 // zero pixel at row 2 and column 15 
+3 14 // zero pixel row 3 and column 14 
+1 15// zero pixel row 3 and column 15
+
+methods to modify
+getChainCode():
+record on zeroBoundaryFile the row and column position of lastZero which is the pixel before startrow and startcol
+
+findNextP():
+record on zeroboundaryfile the row and column position of each zero-pixel while currentP is looking for the next object pixel (== label)
+
+constructBoundary():
+after you use chaincodeFile to plot the boundary of objects you plot all zero pixels at the position recorded in zeroBoundaryFile using numCC+1 as the marker ie turn zero to numcc+1
+
+  */
