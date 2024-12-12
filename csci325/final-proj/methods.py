@@ -4,53 +4,6 @@ import numpy as np
 import cv2
 
 
-# Function to parse annotations for a given dataset split (e.g., train, val)
-def parse_annotations(annotation_dir, image_dir, imageset_file):
-    """
-    Parses the PASCAL VOC dataset annotations and extracts the image paths 
-    and corresponding object class labels.
-
-    Parameters:
-    - annotation_dir (str): Directory containing XML annotation files.
-    - image_dir (str): Directory containing the images (JPEGImages folder).
-    - imageset_file (str): Path to the text file listing image IDs for a dataset split.
-
-    Returns:
-    - annotations (list of tuples): A list of tuples where each tuple contains:
-        - image_path (str): Path to the image.
-        - labels (set of str): Set of object class labels for the image.
-    """
-    # Read the image IDs from the specified imageset file (e.g., train.txt)
-    with open(imageset_file, 'r') as file:
-        image_ids = [line.strip() for line in file.readlines()]  # List of image IDs (e.g., 2007_000027)
-
-    annotations = []  # List to store image paths and corresponding labels
-    
-    # Iterate through each image ID to extract its annotations
-    for image_id in image_ids:
-        # Construct the path to the XML annotation file for the current image
-        xml_file = os.path.join(annotation_dir, f"{image_id}.xml")
-        
-        # Parse the XML file
-        tree = ET.parse(xml_file)  # Load the XML file as a tree structure
-        root = tree.getroot()  # Get the root element of the XML file
-        
-        # Extract object class labels for the current image
-        labels = set()  # Use a set to ensure each class is unique
-        for obj in root.findall("object"):  # Find all <object> tags in the XML
-            class_name = obj.find("name").text  # Extract the class name (e.g., "person", "car")
-            labels.add(class_name)  # Add the class name to the set of labels
-        
-        # Construct the path to the image file in the JPEGImages directory
-        image_path = os.path.join(image_dir, f"{image_id}.jpg")
-        
-        # Append the image path and its corresponding labels to the annotations list
-        annotations.append((image_path, labels))
-    
-    # Return the list of annotations
-    return annotations
-
-
 def parse_animal_annotations(annotation_dir, image_dir, imageset_file, target_classes):
     """
     Parses annotations and filters only the images containing animal classes.
