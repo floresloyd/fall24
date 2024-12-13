@@ -1,30 +1,29 @@
-1. Information Measure And uncertainty [entropy]: I(Q -> Type)
-	- Returns a value explaining 'How uncertain we are'
-		- The lower the value the better
-		- The lower = the more informative question
-	- Entropy: Unique values in a column cause high entropy
-		- higher entropy = higher information uncertainty
-
-	- Computed using a formula based on entropy involving
-	  the probability of each answer 
-
-	- If a feature has many unique values (and hence, high entropy), 
-	  it generally splits the data into many small groups, 
-          which might not be effective for 
-	  making a clear classification.
-	  Features with lower entropy (fewer unique 
-	  values or better class separation) provide 
-	  greater certainty, which is why decision trees 
-	  favor splits that reduce entropy the most
-	 (maximize information gain).
-
-	-More unique values lead to more possible outcomes, 
-	 making it harder to make definitive classifications
-
-2 Expected Information and Certainty [Information Gain]: E[I(Q-> Type)]
-	- How sure we are 
-	- The lower = the more confident we are
-
-	- Taking total entropy (Uncertainty) and subtracting 		
- 		the entropy for each feature, showing how much
-	   we gain by asking a question based on that feature 
+<h1>Validate</h1>
+      <form onSubmit={handleValidation}>
+        <div>
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            type="text"
+            id="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value.toLowerCase().replace(/\s/g, ''))} // Force lowercase and remove spaces
+            required
+            placeholder="Enter your first name"
+          />
+        </div>
+        <div>
+          <label htmlFor="lastInitial">Last Initial:</label>
+          <input
+            type="text"
+            id="lastInitial"
+            value={lastInitial}
+            onChange={(e) =>
+              setLastInitial(e.target.value.toLowerCase().slice(0, 1)) // Force lowercase and limit to one character
+            }
+            required
+            placeholder="Enter your last initial"
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
