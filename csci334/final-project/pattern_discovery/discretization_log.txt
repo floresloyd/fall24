@@ -9,7 +9,7 @@ insulin: 4
 A1Cresult: 4
 readmitted: 3
 
-Number of possible combinations: 10×14×75×16×4×4×3 =10,080,000
+Number of possible combinations: 10×14×75×16×4×4×3 = 10,080,000
 
 Second Iteration:
 age: 10
@@ -19,3 +19,5 @@ number_diagnoses: 6
 insulin: 4
 A1Cresult: 4
 readmitted: 3
+
+Number of possible combinations: 10×9×3×6×4×4×3 = 77,760
