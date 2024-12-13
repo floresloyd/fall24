@@ -1,0 +1,21 @@
+Total Columns: 7
+
+First Iteration:
+age: 10
+time_in_hospital: 14
+num_medications: 75
+number_diagnoses: 16
+insulin: 4
+A1Cresult: 4
+readmitted: 3
+
+Number of possible combinations: 10×14×75×16×4×4×3 =10,080,000
+
+Second Iteration:
+age: 10
+time_in_hospital: 9
+num_medications: 3
+number_diagnoses: 6
+insulin: 4
+A1Cresult: 4
+readmitted: 3
