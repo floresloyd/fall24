@@ -1,0 +1,108 @@
+Data Dictionary for Weite, Rahib, and Ben
+
+{
+  "x1_A1Cresult_Discrete_2": {
+    "NaN": 0,
+    ">7 and >8": 1,
+    "Norm": 2,
+    "Notes": "83% of A1Cresult is NaN, making prediction meaningless. Dropped 70% of NaN rows, resulting in 59% NaN after the drop. Diabetes classification: Normal (<5.7%), Prediabetes (5.7%-6.4%), Diabetes (6.5%+)."
+  },
+  "x2_readmitted_Discrete_2": {
+    "No": 0,
+    ">30": 1,
+    "<30": 2
+  },
+  "x3_race_Discrete_2": {
+    "Caucasian": 0,
+    "AfricanAmerican": 1,
+    "Rest": 2,
+    "Notes": "Rows with `?` are deleted."
+  },
+  "x4_gender_Discrete_1": {
+    "Female": 0,
+    "Male": 1,
+    "Notes": "Rows with `Unknown/Invalid` are deleted."
+  },
+  "x5_age_Discrete_2": {
+    "[0-30)": 0,
+    "[30-70)": 1,
+    "[70-100)": 2
+  },
+  "x6_time_in_hospital_Discrete_1": {
+    "[1,7]": 0,
+    "[8,14]": 1
+  },
+  "x7_diag_1_Discrete_2": {
+    "Chronic disease related": 0,
+    "Acute/infectious disease related": 1,
+    "Others": 2,
+    "Notes": {
+      "Chronic disease related": "Includes endocrine/metabolism (e.g., diabetes), circulatory system, respiratory system, digestive system, urogenital system, etc.",
+      "Acute/infectious disease related": "Includes infectious diseases, mental illness, external causes, injuries, etc.",
+      "Others": "Includes pregnancy, skin diseases, congenital anomalies, and uncertain/supplementary classifications."
+    }
+  },
+  "x8_insulin_Discrete_3": {
+    "No": 0,
+    "Steady": 1,
+    "Up": 2,
+    "Down": 3
+  }
+}
+
+
+Loyd & David Data dictionary 
+age_mapping = {
+    '[0-10)': 0,
+    '[10-20)': 1,
+    '[20-30)': 2,
+    '[30-40)': 3,
+    '[40-50)': 4,
+    '[50-60)': 5,
+    '[60-70)': 6,
+    '[70-80)': 7,
+    '[80-90)': 8,
+    '[90-100)': 9
+}
+time_in_hospital_mapping = {
+    'below': 0,   # Special case for values below 1.0
+    '(1.0, 2.0)': 1,
+    '(2.0, 3.0)': 2,
+    '(3.0, 5.0)': 3,
+    '(5.0, 7.0)': 4,
+    '(7.0, 8.0)': 5,
+    '(8.0, 9.0)': 6,
+    '(9.0, 10.5)': 7,
+    '(10.5, 13.0)': 8,
+    'above': 9     # Special case for values above 13.0
+}
+num_medications_mapping = {
+     'below': 0,         # Special case for values below 19.5
+    '(19.5, 57.4)': 1,   # Single bin
+    'above': 2           # Special case for values above 57.4
+}
+number_diagnoses_mapping = {
+    'below': 0,         # Special case for values below 2.5
+    '(2.5, 7.0)': 1,
+    '(7.0, 11.0)': 2,
+    '(11.0, 13.5)': 3,
+    '(13.5, 15.5)': 4,
+    'above': 5           # Special case for values above 15.5
+}
+insulin_mapping = {
+    'No': 0,      # Map 'No' to 1
+    'Down': 1,    # Map 'Down' to 2
+    'Steady': 2,  # Map 'Steady' to 3
+    'Up': 3       # Map 'Up' to 4
+}
+a1c_mapping = {
+    np.nan: 0,  # Map NaN to 1
+    'Norm': 1,  # Map 'Norm' to 2
+    '>7': 2,    # Map '>7' to 3
+    '>8': 3     # Map '>8' to 4
+}
+readmitted_mapping = {
+    'NO': 0,     # Map 'NO' to 1
+    '>30': 1,    # Map '>30' to 2
+    '<30': 2     # Map '<30' to 3
+}
