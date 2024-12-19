@@ -1,0 +1,230 @@
+DIABETES DATASET ANALYSIS RESULTS
+================================
+
+1. TOP ASSOCIATION RULES
+----------------------
+Total number of frequent itemsets found: 142
+Support threshold: 0.1
+Confidence threshold: 0.5
+
+Frequent Itemsets Summary:
+      support                                                                               itemsets
+0    0.169565                                                                     (x0_Discrete_10_5)
+1    0.220928                                                                     (x0_Discrete_10_6)
+2    0.256156                                                                     (x0_Discrete_10_7)
+3    0.168986                                                                     (x0_Discrete_10_8)
+4    0.139614                                                                      (x1_Discrete_9_1)
+5    0.169251                                                                      (x1_Discrete_9_2)
+6    0.311302                                                                      (x1_Discrete_9_3)
+7    0.172012                                                                      (x1_Discrete_9_4)
+8    0.729075                                                                      (x2_Discrete_3_0)
+9    0.269304                                                                      (x2_Discrete_3_1)
+10   0.294067                                                                      (x3_Discrete_6_1)
+11   0.692766                                                                      (x3_Discrete_6_2)
+12   0.465607                                                                      (x4_Discrete_4_0)
+13   0.120060                                                                      (x4_Discrete_4_1)
+14   0.303137                                                                      (x4_Discrete_4_2)
+15   0.111196                                                                      (x4_Discrete_4_3)
+16   0.832773                                                                      (x5_Discrete_4_0)
+17   0.539119                                                                      (x6_Discrete_3_0)
+18   0.349282                                                                      (x6_Discrete_3_1)
+19   0.111599                                                                      (x6_Discrete_3_2)
+20   0.119116                                                    (x2_Discrete_3_0, x0_Discrete_10_5)
+21   0.110803                                                    (x3_Discrete_6_2, x0_Discrete_10_5)
+22   0.136303                                                    (x5_Discrete_4_0, x0_Discrete_10_5)
+23   0.150237                                                    (x2_Discrete_3_0, x0_Discrete_10_6)
+24   0.156359                                                    (x3_Discrete_6_2, x0_Discrete_10_6)
+25   0.102009                                                    (x4_Discrete_4_0, x0_Discrete_10_6)
+26   0.186103                                                    (x5_Discrete_4_0, x0_Discrete_10_6)
+27   0.118743                                                    (x6_Discrete_3_0, x0_Discrete_10_6)
+28   0.184531                                                    (x2_Discrete_3_0, x0_Discrete_10_7)
+29   0.188580                                                    (x0_Discrete_10_7, x3_Discrete_6_2)
+30   0.127125                                                    (x0_Discrete_10_7, x4_Discrete_4_0)
+31   0.221312                                                    (x0_Discrete_10_7, x5_Discrete_4_0)
+32   0.132893                                                    (x6_Discrete_3_0, x0_Discrete_10_7)
+33   0.129041                                                    (x2_Discrete_3_0, x0_Discrete_10_8)
+34   0.132942                                                    (x3_Discrete_6_2, x0_Discrete_10_8)
+35   0.146955                                                    (x5_Discrete_4_0, x0_Discrete_10_8)
+36   0.129149                                                     (x1_Discrete_9_1, x2_Discrete_3_0)
+37   0.122202                                                     (x1_Discrete_9_1, x5_Discrete_4_0)
+38   0.151043                                                     (x2_Discrete_3_0, x1_Discrete_9_2)
+39   0.104544                                                     (x1_Discrete_9_2, x3_Discrete_6_2)
+40   0.144292                                                     (x1_Discrete_9_2, x5_Discrete_4_0)
+41   0.244473                                                     (x2_Discrete_3_0, x1_Discrete_9_3)
+42   0.213912                                                     (x3_Discrete_6_2, x1_Discrete_9_3)
+43   0.144125                                                     (x4_Discrete_4_0, x1_Discrete_9_3)
+44   0.260234                                                     (x5_Discrete_4_0, x1_Discrete_9_3)
+45   0.166981                                                     (x6_Discrete_3_0, x1_Discrete_9_3)
+46   0.109555                                                     (x6_Discrete_3_1, x1_Discrete_9_3)
+47   0.110636                                                     (x2_Discrete_3_0, x1_Discrete_9_4)
+48   0.129788                                                     (x1_Discrete_9_4, x3_Discrete_6_2)
+49   0.140617                                                     (x1_Discrete_9_4, x5_Discrete_4_0)
+50   0.245013                                                     (x2_Discrete_3_0, x3_Discrete_6_1)
+51   0.472250                                                     (x2_Discrete_3_0, x3_Discrete_6_2)
+52   0.374221                                                     (x2_Discrete_3_0, x4_Discrete_4_0)
+53   0.219504                                                     (x2_Discrete_3_0, x4_Discrete_4_2)
+54   0.610410                                                     (x2_Discrete_3_0, x5_Discrete_4_0)
+55   0.400890                                                     (x2_Discrete_3_0, x6_Discrete_3_0)
+56   0.251322                                                     (x6_Discrete_3_1, x2_Discrete_3_0)
+57   0.219101                                                     (x2_Discrete_3_1, x3_Discrete_6_2)
+58   0.221066                                                     (x2_Discrete_3_1, x5_Discrete_4_0)
+59   0.137197                                                     (x2_Discrete_3_1, x6_Discrete_3_0)
+60   0.155170                                                     (x4_Discrete_4_0, x3_Discrete_6_1)
+61   0.244679                                                     (x5_Discrete_4_0, x3_Discrete_6_1)
+62   0.180777                                                     (x6_Discrete_3_0, x3_Discrete_6_1)
+63   0.305790                                                     (x3_Discrete_6_2, x4_Discrete_4_0)
+64   0.209775                                                     (x3_Discrete_6_2, x4_Discrete_4_2)
+65   0.578710                                                     (x3_Discrete_6_2, x5_Discrete_4_0)
+66   0.349459                                                     (x6_Discrete_3_0, x3_Discrete_6_2)
+67   0.259772                                                     (x6_Discrete_3_1, x3_Discrete_6_2)
+68   0.404821                                                     (x5_Discrete_4_0, x4_Discrete_4_0)
+69   0.262150                                                     (x6_Discrete_3_0, x4_Discrete_4_0)
+70   0.156722                                                     (x6_Discrete_3_1, x4_Discrete_4_0)
+71   0.249042                                                     (x5_Discrete_4_0, x4_Discrete_4_2)
+72   0.166401                                                     (x6_Discrete_3_0, x4_Discrete_4_2)
+73   0.103001                                                     (x6_Discrete_3_1, x4_Discrete_4_2)
+74   0.445355                                                     (x6_Discrete_3_0, x5_Discrete_4_0)
+75   0.292288                                                     (x6_Discrete_3_1, x5_Discrete_4_0)
+76   0.127764                                   (x2_Discrete_3_0, x5_Discrete_4_0, x0_Discrete_10_6)
+77   0.130702                                   (x0_Discrete_10_6, x3_Discrete_6_2, x5_Discrete_4_0)
+78   0.129159                                   (x0_Discrete_10_7, x2_Discrete_3_0, x3_Discrete_6_2)
+79   0.101429                                   (x0_Discrete_10_7, x2_Discrete_3_0, x4_Discrete_4_0)
+80   0.160211                                   (x0_Discrete_10_7, x2_Discrete_3_0, x5_Discrete_4_0)
+81   0.162156                                   (x0_Discrete_10_7, x3_Discrete_6_2, x5_Discrete_4_0)
+82   0.112926                                   (x0_Discrete_10_7, x5_Discrete_4_0, x4_Discrete_4_0)
+83   0.114606                                   (x0_Discrete_10_7, x6_Discrete_3_0, x5_Discrete_4_0)
+84   0.113044                                   (x2_Discrete_3_0, x5_Discrete_4_0, x0_Discrete_10_8)
+85   0.115431                                   (x3_Discrete_6_2, x0_Discrete_10_8, x5_Discrete_4_0)
+86   0.112366                                    (x1_Discrete_9_1, x2_Discrete_3_0, x5_Discrete_4_0)
+87   0.128501                                    (x1_Discrete_9_2, x2_Discrete_3_0, x5_Discrete_4_0)
+88   0.162834                                    (x2_Discrete_3_0, x3_Discrete_6_2, x1_Discrete_9_3)
+89   0.119785                                    (x2_Discrete_3_0, x4_Discrete_4_0, x1_Discrete_9_3)
+90   0.203398                                    (x2_Discrete_3_0, x5_Discrete_4_0, x1_Discrete_9_3)
+91   0.132284                                    (x2_Discrete_3_0, x6_Discrete_3_0, x1_Discrete_9_3)
+92   0.180522                                    (x3_Discrete_6_2, x1_Discrete_9_3, x5_Discrete_4_0)
+93   0.106588                                    (x6_Discrete_3_0, x3_Discrete_6_2, x1_Discrete_9_3)
+94   0.125454                                    (x5_Discrete_4_0, x4_Discrete_4_0, x1_Discrete_9_3)
+95   0.138052                                    (x6_Discrete_3_0, x5_Discrete_4_0, x1_Discrete_9_3)
+96   0.106539                                    (x1_Discrete_9_4, x3_Discrete_6_2, x5_Discrete_4_0)
+97   0.134121                                    (x2_Discrete_3_0, x4_Discrete_4_0, x3_Discrete_6_1)
+98   0.202140                                    (x2_Discrete_3_0, x5_Discrete_4_0, x3_Discrete_6_1)
+99   0.150748                                    (x2_Discrete_3_0, x6_Discrete_3_0, x3_Discrete_6_1)
+100  0.236120                                    (x2_Discrete_3_0, x3_Discrete_6_2, x4_Discrete_4_0)
+101  0.141992                                    (x2_Discrete_3_0, x3_Discrete_6_2, x4_Discrete_4_2)
+102  0.400114                                    (x2_Discrete_3_0, x3_Discrete_6_2, x5_Discrete_4_0)
+103  0.242173                                    (x2_Discrete_3_0, x6_Discrete_3_0, x3_Discrete_6_2)
+104  0.176149                                    (x6_Discrete_3_1, x2_Discrete_3_0, x3_Discrete_6_2)
+105  0.324814                                    (x2_Discrete_3_0, x5_Discrete_4_0, x4_Discrete_4_0)
+106  0.213765                                    (x2_Discrete_3_0, x6_Discrete_3_0, x4_Discrete_4_0)
+107  0.124364                                    (x6_Discrete_3_1, x2_Discrete_3_0, x4_Discrete_4_0)
+108  0.180640                                    (x2_Discrete_3_0, x5_Discrete_4_0, x4_Discrete_4_2)
+109  0.121868                                    (x2_Discrete_3_0, x6_Discrete_3_0, x4_Discrete_4_2)
+110  0.331918                                    (x2_Discrete_3_0, x6_Discrete_3_0, x5_Discrete_4_0)
+111  0.212163                                    (x6_Discrete_3_1, x2_Discrete_3_0, x5_Discrete_4_0)
+112  0.177466                                    (x2_Discrete_3_1, x3_Discrete_6_2, x5_Discrete_4_0)
+113  0.106391                                    (x2_Discrete_3_1, x6_Discrete_3_0, x3_Discrete_6_2)
+114  0.112641                                    (x2_Discrete_3_1, x6_Discrete_3_0, x5_Discrete_4_0)
+115  0.134171                                    (x3_Discrete_6_1, x5_Discrete_4_0, x4_Discrete_4_0)
+116  0.148645                                    (x6_Discrete_3_0, x5_Discrete_4_0, x3_Discrete_6_1)
+117  0.266671                                    (x3_Discrete_6_2, x4_Discrete_4_0, x5_Discrete_4_0)
+118  0.159710                                    (x6_Discrete_3_0, x3_Discrete_6_2, x4_Discrete_4_0)
+119  0.112228                                    (x6_Discrete_3_1, x3_Discrete_6_2, x4_Discrete_4_0)
+120  0.175461                                    (x4_Discrete_4_2, x3_Discrete_6_2, x5_Discrete_4_0)
+121  0.107678                                    (x6_Discrete_3_0, x3_Discrete_6_2, x4_Discrete_4_2)
+122  0.290647                                    (x6_Discrete_3_0, x3_Discrete_6_2, x5_Discrete_4_0)
+123  0.216801                                    (x6_Discrete_3_1, x3_Discrete_6_2, x5_Discrete_4_0)
+124  0.226814                                    (x6_Discrete_3_0, x5_Discrete_4_0, x4_Discrete_4_0)
+125  0.136981                                    (x6_Discrete_3_1, x5_Discrete_4_0, x4_Discrete_4_0)
+126  0.134308                                    (x6_Discrete_3_0, x5_Discrete_4_0, x4_Discrete_4_2)
+127  0.111963                  (x0_Discrete_10_7, x2_Discrete_3_0, x3_Discrete_6_2, x5_Discrete_4_0)
+128  0.137895                   (x2_Discrete_3_0, x3_Discrete_6_2, x1_Discrete_9_3, x5_Discrete_4_0)
+129  0.103659                   (x2_Discrete_3_0, x5_Discrete_4_0, x4_Discrete_4_0, x1_Discrete_9_3)
+130  0.108592                   (x2_Discrete_3_0, x6_Discrete_3_0, x5_Discrete_4_0, x1_Discrete_9_3)
+131  0.114921                   (x3_Discrete_6_1, x2_Discrete_3_0, x5_Discrete_4_0, x4_Discrete_4_0)
+132  0.122683                   (x2_Discrete_3_0, x6_Discrete_3_0, x5_Discrete_4_0, x3_Discrete_6_1)
+133  0.206552                   (x2_Discrete_3_0, x3_Discrete_6_2, x4_Discrete_4_0, x5_Discrete_4_0)
+134  0.125258                   (x2_Discrete_3_0, x6_Discrete_3_0, x3_Discrete_6_2, x4_Discrete_4_0)
+135  0.120070                   (x4_Discrete_4_2, x2_Discrete_3_0, x3_Discrete_6_2, x5_Discrete_4_0)
+136  0.204037                   (x2_Discrete_3_0, x6_Discrete_3_0, x3_Discrete_6_2, x5_Discrete_4_0)
+137  0.149264                   (x6_Discrete_3_1, x2_Discrete_3_0, x3_Discrete_6_2, x5_Discrete_4_0)
+138  0.184187                   (x2_Discrete_3_0, x6_Discrete_3_0, x5_Discrete_4_0, x4_Discrete_4_0)
+139  0.108848                   (x6_Discrete_3_1, x2_Discrete_3_0, x5_Discrete_4_0, x4_Discrete_4_0)
+140  0.138927                   (x6_Discrete_3_0, x3_Discrete_6_2, x4_Discrete_4_0, x5_Discrete_4_0)
+141  0.109172  (x5_Discrete_4_0, x4_Discrete_4_0, x2_Discrete_3_0, x6_Discrete_3_0, x3_Discrete_6_2)
+
+Top 10 Association Rules by Lift:
+                                             antecedents                         consequents  antecedent support  consequent support   support  confidence      lift  representativity  leverage  conviction  zhangs_metric   jaccard  certainty  kulczynski
+86                                     (x1_Discrete_9_1)  (x2_Discrete_3_0, x5_Discrete_4_0)            0.139614            0.610410  0.112366    0.804828  1.318504               1.0  0.027144    1.996139       0.280763  0.176216   0.499033    0.494455
+116                                    (x3_Discrete_6_1)  (x2_Discrete_3_0, x6_Discrete_3_0)            0.294067            0.400890  0.150748    0.512631  1.278732               1.0  0.032859    1.229274       0.308776  0.277003   0.186512    0.444332
+14                                     (x1_Discrete_9_1)                   (x2_Discrete_3_0)            0.139614            0.729075  0.129149    0.925042  1.268790               1.0  0.027360    3.614375       0.246224  0.174635   0.723327    0.551092
+85                    (x1_Discrete_9_1, x5_Discrete_4_0)                   (x2_Discrete_3_0)            0.122202            0.729075  0.112366    0.919508  1.261199               1.0  0.023271    3.365863       0.235935  0.152069   0.702899    0.536814
+217                   (x5_Discrete_4_0, x3_Discrete_6_1)  (x2_Discrete_3_0, x6_Discrete_3_0)            0.244679            0.400890  0.122683    0.501406  1.250730               1.0  0.024594    1.201597       0.265407  0.234628   0.167775    0.403717
+89                                     (x1_Discrete_9_2)  (x2_Discrete_3_0, x5_Discrete_4_0)            0.169251            0.610410  0.128501    0.759231  1.243805               1.0  0.025188    1.618108       0.235950  0.197341   0.381994    0.484873
+16                                     (x1_Discrete_9_2)                   (x2_Discrete_3_0)            0.169251            0.729075  0.151043    0.892418  1.224042               1.0  0.027646    2.518305       0.220324  0.202122   0.602908    0.549794
+88                    (x1_Discrete_9_2, x5_Discrete_4_0)                   (x2_Discrete_3_0)            0.144292            0.729075  0.128501    0.890561  1.221495               1.0  0.023301    2.475588       0.211908  0.172515   0.596056    0.533406
+208  (x2_Discrete_3_0, x5_Discrete_4_0, x3_Discrete_6_1)                   (x4_Discrete_4_0)            0.202140            0.465607  0.114921    0.568519  1.221026               1.0  0.020803    1.238507       0.226878  0.207878   0.192576    0.407669
+211                   (x4_Discrete_4_0, x3_Discrete_6_1)  (x2_Discrete_3_0, x5_Discrete_4_0)            0.155170            0.610410  0.114921    0.740612  1.213302               1.0  0.020203    1.501956       0.208092  0.176622   0.334202    0.464440
+
+2. MUTUAL INFORMATION SCORES
+--------------------------
+           column1        column2  mutual_info
+6    x1_Discrete_9  x2_Discrete_3     0.075263
+2   x0_Discrete_10  x3_Discrete_6     0.028921
+7    x1_Discrete_9  x3_Discrete_6     0.020935
+12   x2_Discrete_3  x4_Discrete_4     0.019063
+11   x2_Discrete_3  x3_Discrete_6     0.014454
+4   x0_Discrete_10  x5_Discrete_4     0.013649
+8    x1_Discrete_9  x4_Discrete_4     0.010117
+18   x4_Discrete_4  x5_Discrete_4     0.009259
+0   x0_Discrete_10  x1_Discrete_9     0.009205
+3   x0_Discrete_10  x4_Discrete_4     0.006973
+
+3. STATISTICALLY SIGNIFICANT ASSOCIATIONS
+-------------------------------------
+                          variables          chi2        p_value  strength
+6    (x1_Discrete_9, x2_Discrete_3)  15403.143358   0.000000e+00  0.050453
+2   (x0_Discrete_10, x3_Discrete_6)  14270.745793   0.000000e+00  0.023372
+12   (x2_Discrete_3, x4_Discrete_4)   4038.583266   0.000000e+00  0.013228
+11   (x2_Discrete_3, x3_Discrete_6)   2735.940065   0.000000e+00  0.008962
+4   (x0_Discrete_10, x5_Discrete_4)   3468.451904   0.000000e+00  0.008521
+7    (x1_Discrete_9, x3_Discrete_6)   4159.836684   0.000000e+00  0.006813
+8    (x1_Discrete_9, x4_Discrete_4)   2078.515203   0.000000e+00  0.005106
+18   (x4_Discrete_4, x5_Discrete_4)   1948.398246   0.000000e+00  0.004786
+1   (x0_Discrete_10, x2_Discrete_3)   1154.172534  7.329527e-234  0.003780
+17   (x3_Discrete_6, x6_Discrete_3)   1149.181197  1.314393e-240  0.003764
+3   (x0_Discrete_10, x4_Discrete_4)   1447.161798  1.865609e-288  0.003555
+15   (x3_Discrete_6, x4_Discrete_4)   1067.732132  4.040180e-218  0.002623
+0   (x0_Discrete_10, x1_Discrete_9)   1813.112224   0.000000e+00  0.001980
+16   (x3_Discrete_6, x5_Discrete_4)    733.107932  1.622362e-146  0.001801
+19   (x4_Discrete_4, x6_Discrete_3)    516.695761  2.126586e-108  0.001692
+10   (x1_Discrete_9, x6_Discrete_3)    508.063851   6.594926e-98  0.001664
+9    (x1_Discrete_9, x5_Discrete_4)    520.953339   7.368581e-95  0.001280
+5   (x0_Discrete_10, x6_Discrete_3)    313.171753   9.348415e-56  0.001026
+14   (x2_Discrete_3, x6_Discrete_3)    183.648552   1.227115e-38  0.000602
+20   (x5_Discrete_4, x6_Discrete_3)     70.124299   3.855751e-13  0.000230
+13   (x2_Discrete_3, x5_Discrete_4)     55.139179   4.344994e-10  0.000181
+
+4. NORMALIZED MUTUAL INFORMATION SCORES
+-----------------------------------
+                          variables  mutual_info  normalized_mi
+6    (x1_Discrete_9, x2_Discrete_3)     0.075263       0.126686
+2   (x0_Discrete_10, x3_Discrete_6)     0.028921       0.042803
+12   (x2_Discrete_3, x4_Discrete_4)     0.019063       0.032087
+7    (x1_Discrete_9, x3_Discrete_6)     0.020935       0.030984
+11   (x2_Discrete_3, x3_Discrete_6)     0.014454       0.024330
+4   (x0_Discrete_10, x5_Discrete_4)     0.013649       0.021788
+18   (x4_Discrete_4, x5_Discrete_4)     0.009259       0.014780
+1   (x0_Discrete_10, x2_Discrete_3)     0.006388       0.010753
+17   (x3_Discrete_6, x6_Discrete_3)     0.005707       0.008447
+8    (x1_Discrete_9, x4_Discrete_4)     0.010117       0.008317
+15   (x3_Discrete_6, x4_Discrete_4)     0.005407       0.008002
+3   (x0_Discrete_10, x4_Discrete_4)     0.006973       0.005732
+0   (x0_Discrete_10, x1_Discrete_9)     0.009205       0.005004
+16   (x3_Discrete_6, x5_Discrete_4)     0.002811       0.004487
+9    (x1_Discrete_9, x5_Discrete_4)     0.002565       0.004095
+19   (x4_Discrete_4, x6_Discrete_3)     0.002524       0.002671
+10   (x1_Discrete_9, x6_Discrete_3)     0.002515       0.002661
+5   (x0_Discrete_10, x6_Discrete_3)     0.001602       0.001695
+14   (x2_Discrete_3, x6_Discrete_3)     0.000897       0.001510
+20   (x5_Discrete_4, x6_Discrete_3)     0.000349       0.000557
+13   (x2_Discrete_3, x5_Discrete_4)     0.000261       0.000439
